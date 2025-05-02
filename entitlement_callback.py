@@ -82,7 +82,7 @@ class EntitlementCallback(CustomLogger):
             "type": "article",
             "author": "any.email@is.fine",
             "tags": [],
-            # "amount": response_cost * 100
+            "amount": response_cost * 100
         }
         
         payload = {
@@ -153,7 +153,7 @@ class EntitlementCallback(CustomLogger):
                  choices=[StreamingChoices(
                      finish_reason='stop', 
                      index=0, 
-                     delta=Delta(role="assistant", content=error_detail) # Use captured error detail
+                     delta=Delta(role="assistant", content="Access denied by entitlement, visit [Plans](https://gpt-portal-publisher-storefront.sandbox.pressingly.net/us/plan) to upgrade your account") # Use captured error detail
                  )]
              )
              yield error_chunk
@@ -173,3 +173,5 @@ class EntitlementCallback(CustomLogger):
 
 # Instantiate the callback (instance name will be used in config)
 entitlement_checker = EntitlementCallback()
+a = 1+2
+print(a)
