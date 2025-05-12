@@ -22,6 +22,11 @@ To maintain a consistent and organized codebase within `moneta`, please adhere t
     *   `apis/`: A directory to house any new or modified API endpoints related to the package.
     *   `tests/`: A directory containing unit tests and/or integration tests for the package's functionality.
 
+3.  **Database Table Naming Convention:**
+    *   All tables created by MONETA components should be prefixed with `Moneta_` to distinguish them from LiteLLM's tables (which use the `LiteLLM_` prefix).
+    *   Example: `Moneta_LagoSubscription`, `Moneta_UserBilling`, etc.
+    *   This convention helps prevent naming conflicts and makes it clear which tables belong to the MONETA component.
+
 ## Setup and Running
 
 ### Prerequisites
@@ -40,9 +45,24 @@ To maintain a consistent and organized codebase within `moneta`, please adhere t
     prisma generate
     prisma db push
     ```
+3 . database migration
+
+```bash
+prisma migrate deploy
+```
 
 ### Running the Proxy Server
 
 ```bash
-uvicorn litellm.proxy.proxy_server:app --host localhost --port 4000 --reload
+dotenv uvicorn litellm.proxy.proxy_server:app --host localhost --port 4004 --reload
 ```
+
+To run db migrations
+```
+cd moneta/billing && prisma migrate deploy
+```
+
+### PRISMA
+- after generate model, we need to manually add copy from `moneta/.../schema.prisma` in to `./schema.prisma` then run `prisma generate` to make it work
+
+I'm new to this. if you have better solution. let me know. Maybe they have a mechanism to merge it.
