@@ -7,23 +7,27 @@
 > Approver: Dale Le 
 
 # Problem Statement & Epic Overview
-Askii.ai is an AI project that focus on providing AI service. There is some problem that we have to deal with:
+Askii.ai is an AI project focused on providing on-demand AI services. We’ve identified several key challenges:
 
-- **Metric-base subscription**: Askii cost of query is vary and very small (about 0.0001$ - 0.003$). If we map each query with a incremental subscription charge, we have to create/send many incremental charge through the network. Because it is also very small, so the Moneta network fee is high (lower the transaction amount will have higher percentage exchange rate). Further more, process many small transactions through the network not only flood the MO/Publisher but also increase operation cost for all participants (network, storage, computation).
+- **Metric-base subscription**: The cost of each Askii.ai query varies but is very small (approximately $0.0001–$0.003). If we bill each query as an incremental subscription charge, we must create and send many tiny transactions through the Moneta network. Because each amount is so small, Moneta’s network fees (which are a higher percentage for lower transaction amounts) become prohibitive. Processing a high volume of micro-transactions also floods the MO/Publisher and increases operational costs for all participants (network, storage, computation).
 
-- **Entitlement**: Streaming response and response cost only available when ending. When user create a query. the Askii.ai will stream the result as many chunks. Each chunk will have it own tokens/response cost. So we wont know about the final response cost until the streaming response finished. It raises a challenge to entitlement for a query. If we have to wait until the end of the response then performing entitlement check, the user experience will be seriously impacted. On the other side, we may lose the money if user balance is not sufficient or subscription charge failures.
+- **Entitlement**: Askii.ai streams query results in multiple chunks, each incurring its own token/response cost. We don’t know the total cost until the stream finishes, which complicates real-time entitlement checks.  
+   - If we wait until the end of streaming to confirm entitlement, the user experience suffers from latency.  
+   - If we pre-authorize before knowing the full cost, we risk under-charging (if the user’s balance is insufficient) or failed subscription charges.
 
-- **Budget Tracking**: Display user remaining budget realtime. Calculate remaining budget require to aggregate on all plan's billable metrics. This is an expensive operation. In the other hand, this function will be called very often to show realtime remaining balance and by many view/pages.
+- **Budget Tracking**: Displaying the user’s remaining budget in real time requires aggregating all billable metrics for their plan—a computationally expensive operation. Moreover, this check must run frequently across many views/pages to provide up-to-the-second accuracy.
 
-- **Multi-subscription support (Future)**: User can switch between subscription because of a surge of usage. For now, Lago+ with entitlement API which bases on AWS AVP will auto choose a matched subscription instead of letting users choose it.
+- **Multi-subscription support (Future)**: During usage surges, users may want to switch between subscription plans. Today, Lago+’s entitlement API (based on AWS AVP) automatically selects the best match, rather than giving users manual control.
 
-- **Free Trial**: 
-    - **Challenge**: How to implement and manage free trial access?
-    - **Considerations**: 
-        - Will this be a separate plan in Lago?
-        - How will usage be tracked and limited during the free trial?
-        - What is the user experience transitioning from a free trial to a paid plan?
-        - How does entitlement work for free trial users (e.g., can they access all features, or a limited set)?
+- **Free Trial**:  
+   - **Challenge:** How do we implement and manage free-trial access?  
+   - **Considerations:**  
+     - Should the free trial be modeled as a separate plan in Lago?  
+     - How will trial usage be tracked and limited?  
+     - What is the user experience when transitioning from a free trial to a paid plan?  
+     - How does entitlement work for trial users (e.g., full feature access vs. a limited set)?
+
+
 
 # High-level architecture diagram
 
@@ -58,8 +62,8 @@ sequenceDiagram
 # Key design decision & consideration
 
 ## Follow Async approach
-The nature of an AI chat service is realtime response. Therefore, we need to enabling user to receive realtime answers. Follow async approach, the system will enable user to see the result before the charging process start. While the async approach introduces a small risk of revenue loss if billing fails post-usage, this is deemed acceptable given the typically small transaction values, prioritizing user experience. Mechanisms will be in place to minimize such losses.
-
+Given the real-time nature of an AI chat service, it is essential to enable users to receive responses immediately. By adopting an asynchronous approach, the system allows users to view results before the billing process begins. While this introduces a minor risk of revenue loss if billing fails post-usage, this risk is acceptable due to the typically low transaction amounts. User experience is prioritized, and mechanisms will be implemented to minimize potential losses.
+<!-- 
 **Consideration 1: Balance threshold** We can put a threshold (like 0.001$) that check if user remaining balance is above the threshold. When user remaining balance under threshold, (like 0.0005), we will not allow them to use the service.
 
 Pros: 
@@ -73,15 +77,15 @@ Cons:
         - Can LiteLLM periodically send aggregated usage to Lago, even if it's below the user-facing threshold, to ensure Lago's state is updated?
         - Explore if Lago's `grace_period` settings for subscriptions can be leveraged.
         - This interaction needs careful testing and potentially consultation with Lago support or documentation.
-
+-->
 ## Use Lago billable metric as a frontier layer to reduce incremental charges.
 
 > TODO: Need to align with anh Trung concept.
 
-We will create a monetary billable metrics (e.g., `credit_cents`) that represent for total cost that a user spends on a subscription. In LiteLLM, after finishing a request, we will calculate the `response_cost` of query and send an usage event to the metric above with the `subscription_id`.
+We will define a monetary billable metrics (e.g., `credit_cents`)  to represent the total cost a user incurs under a subscription. After each request is completed in LiteLLM, the system will calculate the query's `response_cost` and emit a usage event to this metric, including the corresponding  `subscription_id`.
 
 **[Plan: Starter (0.5$)](https://thepressingly.atlassian.net/wiki/spaces/AAS/pages/7471120/Askii.ai+MVP+Pricing+Plans)**  
-Allow users to prepay a set amount for usage, which they can draw down from
+This plan allows users to prepay a fixed amount for usage, from which their consumption is deducted.
 
 Expiration: None - valid until fully consumed
 Key Features:
@@ -124,43 +128,79 @@ curl --location --request POST "https://gpt-portal-lagoapi.sandbox.pressingly.ne
 ```
 
 ## Askii needs to send the selected subscription_id to LiteLLM.
-As a part of subscription management, Askii will able to list all user subscriptions on the UI and allow user to choose which subscription will be used.
+As part of subscription management, Askii will display a list of all active user subscriptions in the UI and allow the user to select which subscription should be used.
 
-With chat feature, when user submit a query, Askii need to include the current chosing subscription id to Litellm through request header (e.g., `X-OpenWebUI-Subscription-Id`).
+**Chat Queries**  
+When a user submits a chat query, Askii must include the selected subscription_id in the request header sent to LiteLLM. This will be passed via a custom HTTP header:
 
-With the Pipe/Filter/Action function (and other non-interactive API calls), when we call API, we also need to send the current subscription too. The challenge of sending subscription is it's hard to get current_subscription_id and send through many functions without modifying interfaces.
+```
+X-OpenWebUI-Subscription-Id: <subscription_id>
+```
 
-To solve the issue above, Everytime user change subscription, The system will update `user.settings.default_subscription_id` into the selected subscription. So, when LiteLLM is called for these background processes, we can extract the `subscription_id` from `user.settings` instead of transmitting `current_subscription_id` through interfaces.
+**Background/API Calls (Pipe/Filter/Action Functions)**  
+For non-interactive processes (e.g., Pipe/Filter/Action functions or other internal API calls), we also need to pass the correct subscription_id. However, this presents a challenge: it can be difficult to retrieve and propagate the current_subscription_id through deeply nested function calls without modifying many interfaces.
 
-In the `backend/open_webui/routes/openai.py`, we add `current_subscription_id` as a HTTP request header (`X-OpenWebUI-Subscription-Id`) to all the OpenAI/OpenAI-Like requests.
+**Proposed Solution**  
+To address this, whenever a user switches their active subscription, the system will persist the selection by updating:
 
-## Use subscription remaining balance as an entitlement check instead of using entitlement endpoint
+```
+user.settings.default_subscription_id
+```
 
-Lago+ extension provide an entitlement API which support us to ask if user can access a resource or not. This API also include usage event as request body so Lago can update billable metrics if any. In the first place, we design this endpoint as a synchronuous API so publisher can integrate with it easily.
+This allows background processes and internal functions to retrieve the current subscription directly from the user’s settings, eliminating the need to pass subscription_id through multiple layers of function calls.
 
-When we move to async approach, we are not able to follow this approach because submit usage event is now an async step. It can not prevent user from consume resource anymore. To optimize for async approach, we will use subscription remaining balance which check the remaining balance of subscription (cached in LiteLLM DB). This comparison is easy to use and the data is cache-able. 
+**Request Header Injection**
 
-## Use LiteLLM DB to cache subscription remaining balance.
+In `backend/open_webui/routes/openai.py`, the `current_subscription_id` will be automatically added to all outgoing OpenAI/OpenAI-compatible requests using the following HTTP header:
+```
+X-OpenWebUI-Subscription-Id
+```
+This ensures consistent propagation of subscription context across both interactive and background use cases.
 
-In async process (`CustomLogger.async_log_success_event`), after submitting the usage event, LiteLLM receives the updated `subscription_remaining_balance` from Lago. We will store this `subscription_remaining_balance` to LiteLLM DB to do entitlement check for the next query.
 
-**Challenge: Stale Cache and Concurrent Updates**
-When multiple queries run in parallel for the same subscription, the cached balance can be overwritten by an older value if updates are not handled atomically or with a concurrency control mechanism.
 
-**Solution: Optimistic Locking**
-We can apply optimistic locking to update the balance only if the underlying data hasn't changed since it was last read.
+## Using Subscription Remaining Balance as an Entitlement Check (Instead of the Entitlement API)
+
+The **Lago+ extension** provides an entitlement API that allows us to determine whether a user is authorized to access a resource. This API is designed to accept a usage event in the request body, enabling Lago to update relevant billable metrics. Initially, this endpoint was implemented as a synchronous API to simplify integration for publishers.
+
+However, with our transition to an asynchronous architecture, we can no longer rely on this model. Since usage event submission is now an async step, the entitlement API can no longer block access to a resource in real time—it becomes ineffective as a gatekeeper.
+
+**Optimized Approach for Async Flow**  
+To better support the asynchronous model, we will replace the entitlement API with a **subscription remaining balance check**. This check evaluates whether a user’s subscription has sufficient balance remaining before proceeding with a request. Key points:
+
+- The remaining balance is cached in the LiteLLM database.
+- This check is lightweight and highly performant.
+- It aligns well with an async workflow, allowing for quick eligibility checks without waiting for remote API calls.
+- The approach supports real-time entitlement enforcement, even when usage events are reported after the fact.
+
+This method provides a practical and cache-friendly way to validate access in asynchronous systems while maintaining a positive user experience.
+
+## Caching Subscription Remaining Balance in the LiteLLM Database
+
+In asynchronous processes (e.g., `CustomLogger.async_log_success_event`), after submitting a usage event, LiteLLM receives the updated `subscription_remaining_balance` from Lago. This balance will be cached in the LiteLLM database to support fast entitlement checks for subsequent queries.
+
+**Challenge: Stale Cache and Concurrent Updates**  
+When multiple queries are processed concurrently for the same subscription, the cached balance may become outdated or inconsistent. An older balance update could overwrite a more recent one if updates are not performed with proper concurrency control.
+
+**Solution: Optimistic Locking**  
+To address this, we will apply optimistic locking to ensure that balance updates are applied only if the data has not changed since it was last read. This prevents race conditions and ensures cache consistency.
+
 **Table design: `lago_subscriptions`**
 
-- `id`: `uuid` (Primary Key) - Internal LiteLLM DB identifier for this cached record.
-- `subscription_id`: `string` - Required. The unique subscription ID from Lago. This is the `external_subscription_id` used in Lago event API calls if it's the ID from OpenWebUI/your system that Lago knows.
-- `customer_id`: `string` - Required. Lago external customer id, which should map to OpenWebUI user ID.
-- `plan_code`: `string` - Optional. The code of the plan in Lago (e.g., `starter_plan_v1`). Useful for context.
-- `status`: `string` - `active` (default) or `suspended`. This status will be calculated by LiteLLM based on `remaining_balance` and `balance_threshold`.
-- `remaining_balances`: `jsonb` - Current remaining balances for various metrics of a subscription, as reported by Lago.
-    - **Example data**: `{ "credit_cents": 123.50, "data_transfer_gb": 5.5}`
-- `remaining_balance_snapshot_at`: `timestamp` - use as optimistic locking key
-- `created_at`: `timestamp`
-- `updated_at`: `timestamp`
+|             Field             |    Type   |                                                                        Description                                                                       |   |   |
+|:-----------------------------:|:---------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|---|---|
+| id                            | uuid      | Primary key. Internal identifier in the LiteLLM database.                                                                                                |   |   |
+| subscription_id               | string    | Required. Unique subscription ID from Lago (external_subscription_id). This should correspond to the ID known by OpenWebUI and used in Lago's event API. |   |   |
+| customer_id                   | string    | Required. Lago’s external customer ID, which should map to the user ID in OpenWebUI.                                                                     |   |   |
+| plan_code                     | string    | Optional. Lago plan code (e.g., starter_plan_v1). Provides context about the subscription.                                                               |   |   |
+| status                        | string    | Subscription status, either active (default) or suspended. Calculated by LiteLLM based on remaining_balances and predefined balance_threshold.           |   |   |
+| remaining_balances            | jsonb     | The latest known remaining balances for all metrics, as reported by Lago.   Example: { "credit_cents": 123.50, "data_transfer_gb": 5.5 }                 |   |   |
+| remaining_balance_snapshot_at | timestamp | Used as the optimistic locking key to validate data freshness during updates.                                                                            |   |   |
+| created_at                    | timestamp | Record creation timestamp.                                                                                                                               |   |   |
+| updated_at                    | timestamp | Last update timestamp.                                                    
+
+
+This approach ensures real-time entitlement checks are both performant and reliable in a distributed, asynchronous system.
 
 # Non-functional requirements
 
@@ -184,14 +224,15 @@ We can apply optimistic locking to update the balance only if the underlying dat
 # APIs and integrations
 
 ## Askii (OpenWebUI)
-From Askii (OpenWeb UI), We need to build a new subscription management and update the LiteLLM integration to send more data.
-
+On the Askii (OpenWebUI) side, we will implement subscription management functionality and enhance the integration with LiteLLM to include additional metadata in each request.
 
 ### Subscription Management & Selection
 - **Displaying Available Subscriptions**:
-    - Askii UI will query and display all of the user's active subscriptions.
-    - **Data Source**: This list of subscriptions will be fetched from Lago. This will be an indirect query. Askii frontend will request this list from an Askii backend service, which in turn queries Lago. This is to avoid exposing Lago API keys to the client and to handle potential CORS issues.
-- **Setting the Active Subscription**:
+    - The Askii UI will display a list of all active subscriptions associated with the current user.
+    - **Data Source**: This list will be fetched from Lago, but not directly from the client. Instead, the Askii frontend will request the subscription list from the Askii backend, which will handle the query to Lago. This indirection:
+      - Prevents exposure of Lago API credentials to the client.
+      - Avoids client-side CORS issues.
+- **Setting the Active Subscription:**
     - When a user selects a subscription from the displayed list in the Askii UI, or if a subscription is chosen by any other means (e.g., initial subscription activation), the Askii backend will update the `user.settings.default_subscription_id` field for that user to this chosen subscription's ID.
     - `user.settings.default_subscription_id` becomes the **single source of truth** for the currently active/selected subscription for all operations, including interactive chat and background processes.
 
@@ -206,13 +247,16 @@ From Askii (OpenWeb UI), We need to build a new subscription management and upda
     3. Add this ID as the `X-OpenWebUI-Subscription-Id` header.
 
 ## LiteLLM
-Use LiteLLM CustomLogger (`async_log_success_event`) to:
-1.  Perform initial entitlement check (using cached balance from LiteLLM DB).
-2.  After successful LLM response:  
-    a. Calculate `response_cost`.  
-    b. Construct and send usage event to Lago.  
-    c. Receive updated balance information from Lago.  
-    d. Update the cached `lago_subscriptions` record in LiteLLM DB (using optimistic locking). 
+LiteLLM will use its `CustomLogger`—specifically `async_log_success_event`—to handle the following responsibilities in the asynchronous usage flow:
+
+**Initial Entitlement Check**  
+Use the cached subscription balance from the LiteLLM database to verify the user has sufficient credit to proceed.
+
+**Post-Response Billing Workflow**   
+1. Calculate `response_cost`.  
+2. Construct and send usage event to Lago.  
+3. Receive updated balance information from Lago.  
+4. Update the cached `lago_subscriptions` record in LiteLLM DB (using optimistic locking). 
 
 # Test Strategy outline
 
