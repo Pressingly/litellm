@@ -1,3 +1,11 @@
+"""
+LagoLogger - Main integration class for Lago billing with LiteLLM.
+
+This module provides the primary integration between LiteLLM and Lago billing system,
+implementing pre-call entitlement checking and post-call usage reporting through
+LiteLLM's CustomLogger framework.
+"""
+
 import os
 import time
 import uuid
@@ -11,9 +19,9 @@ from litellm.integrations.custom_logger import CustomLogger
 from litellm.proxy._types import UserAPIKeyAuth
 from litellm.caching import DualCache
 
-from moneta.call_data_store import CallDataStore
-from moneta.config import LagoConfig
-from moneta.error_handler import ErrorHandler
+from .call_data_store import CallDataStore
+from .config import LagoConfig
+from .error_handler import ErrorHandler
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -24,7 +32,10 @@ from typing import (
     Tuple,
     Union
 )
-class EntitlementCallback(CustomLogger):
+
+class LagoLogger(CustomLogger):
+    """Streamlined Lago billing integration"""
+    
     def __init__(self):
         """Initialize the Lago logger with configuration and storage"""
         super().__init__()
@@ -217,18 +228,18 @@ class EntitlementCallback(CustomLogger):
                 "external_customer_id": customer_id,
                 "emit_event": False,
                 "publisher_id": self.config.publisher_id,
-                "action_name": self.config.action_name,
+                "action_name": "read",
                 "context": [],
                 "resource": {
                     "id": 1, 
                     "name": "", 
                     "type": "article",
                     "author": "any.email@is.fine",
-                    "tags": [self.config.plan_tag]                             
+                    "tags": []                             
                 },
                 "timestamp": int(time.time())
             }
-            print(f"authorization payload: {payload}")
+
             async with httpx.AsyncClient(timeout=self.config.timeout) as client:
                 response = await client.post(
                     self.config.get_entitlement_url(),
@@ -266,7 +277,7 @@ class EntitlementCallback(CustomLogger):
 
         Args:
             external_subscription_id: External subscription identifier from Lago authorization
-            cost: Actual cost of the API call
+            cost: Actual cost of the API call in Askii Coins
             call_id: Unique identifier for the API call
         """
         try:
@@ -274,15 +285,15 @@ class EntitlementCallback(CustomLogger):
                 "event": {
                     "transaction_id": str(uuid.uuid4()),
                     "external_subscription_id": external_subscription_id,
-                    "code": "askii_coin",
+                    "code": "askii_coins",
                     "timestamp": int(time.time()),
                     "properties": {
-                        "askii_coin": int(cost),  # Convert to cents
+                        "askii_coins": int(cost),  # Cost is already in Askii Coins
                         "call_id": call_id
                     }
                 }
             }
-            print(f"Sending usage event for subscription {external_subscription_id}: ${cost:.4f}")
+            print(f"Sending usage event for subscription {external_subscription_id}: {int(cost)} Askii Coins")
             async with httpx.AsyncClient(timeout=self.config.timeout) as client:
                 response = await client.post(
                     self.config.get_events_url(),
@@ -291,7 +302,7 @@ class EntitlementCallback(CustomLogger):
                 )
 
                 if response.status_code in [200, 201]:
-                    print(f"Usage event sent for subscription {external_subscription_id}: ${cost}")
+                    print(f"Usage event sent for subscription {external_subscription_id}: {int(cost)} Askii Coins")
                 else:
                     print(f"Usage event failed: {response.status_code}")
 
@@ -313,5 +324,5 @@ class EntitlementCallback(CustomLogger):
             "fallback_allow": self.config.fallback_allow
         }
 
-# Instantiate the callback (instance name will be used in config)
-entitlement_checker = EntitlementCallback()
+
+lago_logger = LagoLogger()
