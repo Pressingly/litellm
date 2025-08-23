@@ -1,0 +1,548 @@
+Environment variables loaded from ../../.env
+Prisma schema loaded from schema.prisma
+Datasource "client": PostgreSQL database "litellm", schema "public" at "localhost:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client Python (v0.11.0)
+
+Some types are disabled by default due to being incompatible with Mypy, it is highly recommended
+to use Pyright instead and configure Prisma Python to use recursive types. To re-enable certain types:
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = -1
+}
+
+If you need to use Mypy, you can also disable this message by explicitly setting the default value:
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+For more information see: https://prisma-client-py.readthedocs.io/en/stable/reference/limitations/#default-type-limitations
+
+
+[2K[1A[2K[G✔ Generated Prisma Client Python (v0.11.0) to 
+./../../../../../../Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/
+lib/python3.12/site-packages/prisma in 160ms
+
+INFO:     Started server process [42341]
+INFO:     Waiting for application startup.
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: proxy_server.py:482 - litellm.proxy.proxy_server.py::startup() - CHECKING PREMIUM USER - False
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: litellm_license.py:98 - litellm.proxy.auth.litellm_license.py::is_premium() - ENTERING 'IS_PREMIUM' - LiteLLM License=None
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: litellm_license.py:107 - litellm.proxy.auth.litellm_license.py::is_premium() - Updated 'self.license_str' - None
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: proxy_server.py:495 - worker_config: {"model": null, "alias": null, "api_base": null, "api_version": "2024-07-01-preview", "debug": false, "detailed_debug": true, "temperature": null, "max_tokens": null, "request_timeout": null, "max_budget": null, "telemetry": true, "drop_params": false, "add_function_to_prompt": false, "headers": null, "save": false, "config": "./config.yaml", "use_queue": false}
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: proxy_server.py:1299 - loaded config={
+    "model_list": [
+        {
+            "model_name": "gpt-3.5-turbo",
+            "litellm_params": {
+                "model": "azure/my_azure_deployment",
+                "api_base": "os.environ/AZURE_API_BASE",
+                "api_key": "os.environ/AZURE_API_KEY",
+                "api_version": "2024-07-01-preview"
+            }
+        },
+        {
+            "model_name": "gemini-2.0-flash",
+            "litellm_params": {
+                "model": "gemini/gemini-2.0-flash",
+                "api_key": "os.environ/GOOGLE_API_KEY"
+            }
+        },
+        {
+            "model_name": "gemini-2.5-pro-preview-03-25",
+            "litellm_params": {
+                "model": "gemini/gemini-2.5-pro-preview-03-25",
+                "api_key": "os.environ/GOOGLE_API_KEY"
+            }
+        },
+        {
+            "model_name": "gemini-2.0-flash-lite",
+            "litellm_params": {
+                "model": "gemini/gemini-2.0-flash-lite",
+                "api_key": "os.environ/GOOGLE_API_KEY"
+            }
+        },
+        {
+            "model_name": "gpt-4o-mini",
+            "litellm_params": {
+                "model": "openai/gpt-4o-mini",
+                "api_key": "os.environ/OPENAI_API_KEY"
+            }
+        },
+        {
+            "model_name": "gpt-4o",
+            "litellm_params": {
+                "model": "openai/gpt-4o",
+                "api_key": "os.environ/OPENAI_API_KEY"
+            }
+        },
+        {
+            "model_name": "gpt-o1-mini",
+            "litellm_params": {
+                "model": "openai/o1-mini",
+                "api_key": "os.environ/OPENAI_API_KEY"
+            }
+        },
+        {
+            "model_name": "vertex-gemini-pro",
+            "litellm_params": {
+                "model": "vertex_ai/gemini-pro",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-gemini-pro-vision",
+            "litellm_params": {
+                "model": "vertex_ai/gemini-pro-vision",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-gemini-1.5-pro",
+            "litellm_params": {
+                "model": "vertex_ai/gemini-1.5-pro-001",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-gemini-1.5-flash",
+            "litellm_params": {
+                "model": "vertex_ai/gemini-1.5-flash-001",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-text-bison",
+            "litellm_params": {
+                "model": "vertex_ai/text-bison",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-chat-bison",
+            "litellm_params": {
+                "model": "vertex_ai/chat-bison",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-code-bison",
+            "litellm_params": {
+                "model": "vertex_ai/code-bison",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        },
+        {
+            "model_name": "vertex-codechat-bison",
+            "litellm_params": {
+                "model": "vertex_ai/codechat-bison",
+                "vertex_project": "os.environ/VERTEX_PROJECT",
+                "vertex_location": "os.environ/VERTEX_LOCATION"
+            }
+        }
+    ],
+    "litellm_settings": {
+        "callbacks": [
+            "entitlement_callback.entitlement_checker"
+        ]
+    }
+}
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: callback_utils.py:22 - [94minitializing callbacks=['entitlement_callback.entitlement_checker'] on proxy[0m
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: callback_utils.py:212 - [94m attempting to import custom calback=entitlement_callback.entitlement_checker [0m
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: callback_utils.py:237 - [94m Initialized Callbacks - [<litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x1382247a0>, <entitlement_callback.EntitlementCallback object at 0x1393d0710>] [0m
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986', 'combined_model_name': 'f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986', 'stripped_model_name': 'f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986', 'combined_stripped_model_name': 'f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986 in litellm.model_cost: f5166bfd88c40820e12e73a0030db7a158c0493e401783a6419096b21a8dc986
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'my_azure_deployment', 'combined_model_name': 'azure/my_azure_deployment', 'stripped_model_name': 'azure/my_azure_deployment', 'combined_stripped_model_name': 'azure/my_azure_deployment', 'custom_llm_provider': 'azure'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=azure/my_azure_deployment in litellm.model_cost: azure/my_azure_deployment
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db', 'combined_model_name': 'a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db', 'stripped_model_name': 'a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db', 'combined_stripped_model_name': 'a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db in litellm.model_cost: a32a4a3510e7185e5e0d719d96f02df860e4a49f8561d518656ead331e8b16db
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.0-flash', 'combined_model_name': 'gemini/gemini-2.0-flash', 'stripped_model_name': 'gemini-2.0-flash', 'combined_stripped_model_name': 'gemini/gemini-2.0-flash', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.0-flash', 'combined_model_name': 'gemini/gemini-2.0-flash', 'stripped_model_name': 'gemini/gemini-2.0-flash', 'combined_stripped_model_name': 'gemini/gemini-2.0-flash', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini/gemini-2.0-flash', 'max_tokens': 8192, 'max_input_tokens': 1048576, 'max_output_tokens': 8192, 'input_cost_per_token': 1e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 2.5e-08, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': 7e-07, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 4e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'gemini', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': True, 'supports_audio_output': True, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': True, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': 10000000, 'rpm': 10000}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini/gemini-2.0-flash in litellm.model_cost: gemini/gemini-2.0-flash
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc', 'combined_model_name': 'bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc', 'stripped_model_name': 'bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc', 'combined_stripped_model_name': 'bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc in litellm.model_cost: bd43bef6a5bae257ae583407b55c2cbf361e5f24e35b24e722c47b10a56ca9fc
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.5-pro-preview-03-25', 'combined_model_name': 'gemini/gemini-2.5-pro-preview-03-25', 'stripped_model_name': 'gemini-2.5-pro-preview-03', 'combined_stripped_model_name': 'gemini/gemini-2.5-pro-preview-03', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.5-pro-preview-03-25', 'combined_model_name': 'gemini/gemini-2.5-pro-preview-03-25', 'stripped_model_name': 'gemini/gemini-2.5-pro-preview-03', 'combined_stripped_model_name': 'gemini/gemini-2.5-pro-preview-03', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini/gemini-2.5-pro-preview-03-25', 'max_tokens': 65535, 'max_input_tokens': 1048576, 'max_output_tokens': 65535, 'input_cost_per_token': 1.25e-06, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 3.125e-07, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': 2.5e-06, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': 7e-07, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1e-05, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': 1.5e-05, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'gemini', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': True, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': True, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': 10000000, 'rpm': 10000}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini/gemini-2.5-pro-preview-03-25 in litellm.model_cost: gemini/gemini-2.5-pro-preview-03-25
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb', 'combined_model_name': 'ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb', 'stripped_model_name': 'ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb', 'combined_stripped_model_name': 'ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb in litellm.model_cost: ac89a1cd15280abcfb6be8dc746da73496e7eceb3ecb529787885aeb13adfcbb
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.0-flash-lite', 'combined_model_name': 'gemini/gemini-2.0-flash-lite', 'stripped_model_name': 'gemini-2.0-flash-lite', 'combined_stripped_model_name': 'gemini/gemini-2.0-flash-lite', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-2.0-flash-lite', 'combined_model_name': 'gemini/gemini-2.0-flash-lite', 'stripped_model_name': 'gemini/gemini-2.0-flash-lite', 'combined_stripped_model_name': 'gemini/gemini-2.0-flash-lite', 'custom_llm_provider': 'gemini'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini/gemini-2.0-flash-lite', 'max_tokens': None, 'max_input_tokens': 1048576, 'max_output_tokens': 8192, 'input_cost_per_token': 7.5e-08, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 1.875e-08, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': 7.5e-08, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 3e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'gemini', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': False, 'supports_audio_output': True, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': True, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': 4000000, 'rpm': 4000}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini/gemini-2.0-flash-lite in litellm.model_cost: gemini/gemini-2.0-flash-lite
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e', 'combined_model_name': 'de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e', 'stripped_model_name': 'de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e', 'combined_stripped_model_name': 'de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e in litellm.model_cost: de1bebbd829c52f9c1bd1d04f1d0643ec66ba6655462c4753e5f6fa2d4a40e0e
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gpt-4o-mini', 'combined_model_name': 'openai/gpt-4o-mini', 'stripped_model_name': 'openai/gpt-4o-mini', 'combined_stripped_model_name': 'openai/gpt-4o-mini', 'custom_llm_provider': 'openai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gpt-4o-mini', 'max_tokens': 16384, 'max_input_tokens': 128000, 'max_output_tokens': 16384, 'input_cost_per_token': 1.5e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 7.5e-08, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': 7.5e-08, 'output_cost_per_token_batches': 3e-07, 'output_cost_per_token': 6e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'openai', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': True, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gpt-4o-mini in litellm.model_cost: gpt-4o-mini
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300', 'combined_model_name': '2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300', 'stripped_model_name': '2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300', 'combined_stripped_model_name': '2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300 in litellm.model_cost: 2ef2597fce9b07ebd014a777124257df538740b76e878193f853de4dff1de300
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gpt-4o', 'combined_model_name': 'openai/gpt-4o', 'stripped_model_name': 'openai/gpt-4o', 'combined_stripped_model_name': 'openai/gpt-4o', 'custom_llm_provider': 'openai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gpt-4o', 'max_tokens': 16384, 'max_input_tokens': 128000, 'max_output_tokens': 16384, 'input_cost_per_token': 2.5e-06, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 1.25e-06, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': 1.25e-06, 'output_cost_per_token_batches': 5e-06, 'output_cost_per_token': 1e-05, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'openai', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': True, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gpt-4o in litellm.model_cost: gpt-4o
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e', 'combined_model_name': 'c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e', 'stripped_model_name': 'c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e', 'combined_stripped_model_name': 'c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e in litellm.model_cost: c52b0fa5ce7b2b60ba4fa1a3bec7fb26e52b19f0112447717e48e4bacd2d014e
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'o1-mini', 'combined_model_name': 'openai/o1-mini', 'stripped_model_name': 'openai/o1-mini', 'combined_stripped_model_name': 'openai/o1-mini', 'custom_llm_provider': 'openai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'o1-mini', 'max_tokens': 65536, 'max_input_tokens': 128000, 'max_output_tokens': 65536, 'input_cost_per_token': 1.1e-06, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': 5.5e-07, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 4.4e-06, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'openai', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': True, 'supports_function_calling': False, 'supports_tool_choice': False, 'supports_assistant_prefill': False, 'supports_prompt_caching': True, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': True, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=o1-mini in litellm.model_cost: o1-mini
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc', 'combined_model_name': 'cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc', 'stripped_model_name': 'cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc', 'combined_stripped_model_name': 'cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc in litellm.model_cost: cbcca9165e24af95ff0644ac4fcdfdd1e0cfe58464f686af8d1ae513fd25b5cc
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-pro', 'combined_model_name': 'vertex_ai/gemini-pro', 'stripped_model_name': 'gemini-pro', 'combined_stripped_model_name': 'vertex_ai/gemini-pro', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-pro', 'combined_model_name': 'vertex_ai/gemini-pro', 'stripped_model_name': 'vertex_ai/gemini-pro', 'combined_stripped_model_name': 'vertex_ai/gemini-pro', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini-pro', 'max_tokens': 8192, 'max_input_tokens': 32760, 'max_output_tokens': 8192, 'input_cost_per_token': 5e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 1.25e-07, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1.5e-06, 'output_cost_per_audio_token': None, 'output_cost_per_character': 3.75e-07, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-language-models', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': False, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini-pro in litellm.model_cost: gemini-pro
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca', 'combined_model_name': '5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca', 'stripped_model_name': '5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca', 'combined_stripped_model_name': '5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca in litellm.model_cost: 5598dde57d310657ca02f16c6e449230e956f3ea9d8fef9170a9a721e9afecca
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-pro-vision', 'combined_model_name': 'vertex_ai/gemini-pro-vision', 'stripped_model_name': 'gemini-pro-vision', 'combined_stripped_model_name': 'vertex_ai/gemini-pro-vision', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-pro-vision', 'combined_model_name': 'vertex_ai/gemini-pro-vision', 'stripped_model_name': 'vertex_ai/gemini-pro-vision', 'combined_stripped_model_name': 'vertex_ai/gemini-pro-vision', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini-pro-vision', 'max_tokens': 2048, 'max_input_tokens': 16384, 'max_output_tokens': 2048, 'input_cost_per_token': 5e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': None, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1.5e-06, 'output_cost_per_audio_token': None, 'output_cost_per_character': None, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-vision-models', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini-pro-vision in litellm.model_cost: gemini-pro-vision
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567', 'combined_model_name': '8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567', 'stripped_model_name': '8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567', 'combined_stripped_model_name': '8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567 in litellm.model_cost: 8a968fe8ef28e78134fc80b09cc782e4d5746c4b426a4dec523bb0943db35567
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-1.5-pro-001', 'combined_model_name': 'vertex_ai/gemini-1.5-pro-001', 'stripped_model_name': 'gemini-1.5-pro', 'combined_stripped_model_name': 'vertex_ai/gemini-1.5-pro', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-1.5-pro-001', 'combined_model_name': 'vertex_ai/gemini-1.5-pro-001', 'stripped_model_name': 'vertex_ai/gemini-1.5-pro', 'combined_stripped_model_name': 'vertex_ai/gemini-1.5-pro', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini-1.5-pro-001', 'max_tokens': 8192, 'max_input_tokens': 1000000, 'max_output_tokens': 8192, 'input_cost_per_token': 1.25e-06, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 3.125e-07, 'input_cost_per_token_above_128k_tokens': 2.5e-06, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 5e-06, 'output_cost_per_audio_token': None, 'output_cost_per_character': 1.25e-06, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': 1e-05, 'output_cost_per_character_above_128k_tokens': 2.5e-06, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-language-models', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini-1.5-pro-001 in litellm.model_cost: gemini-1.5-pro-001
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c', 'combined_model_name': '5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c', 'stripped_model_name': '5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c', 'combined_stripped_model_name': '5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c in litellm.model_cost: 5bcd95c757f7d4ed96c99ee70d67c16873ff3badae5164e3d0ce02165298ff4c
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-1.5-flash-001', 'combined_model_name': 'vertex_ai/gemini-1.5-flash-001', 'stripped_model_name': 'gemini-1.5-flash', 'combined_stripped_model_name': 'vertex_ai/gemini-1.5-flash', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'gemini-1.5-flash-001', 'combined_model_name': 'vertex_ai/gemini-1.5-flash-001', 'stripped_model_name': 'vertex_ai/gemini-1.5-flash', 'combined_stripped_model_name': 'vertex_ai/gemini-1.5-flash', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'gemini-1.5-flash-001', 'max_tokens': 8192, 'max_input_tokens': 1000000, 'max_output_tokens': 8192, 'input_cost_per_token': 7.5e-08, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 1.875e-08, 'input_cost_per_token_above_128k_tokens': 1e-06, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 3e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': 7.5e-08, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': 6e-07, 'output_cost_per_character_above_128k_tokens': 1.5e-07, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-language-models', 'mode': 'chat', 'supports_system_messages': True, 'supports_response_schema': True, 'supports_vision': True, 'supports_function_calling': True, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=gemini-1.5-flash-001 in litellm.model_cost: gemini-1.5-flash-001
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da', 'combined_model_name': '231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da', 'stripped_model_name': '231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da', 'combined_stripped_model_name': '231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da in litellm.model_cost: 231a7e56a4dfaaea0e50f71fdaa994b0013e629b65a1b32e53aa021c74f382da
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'text-bison', 'combined_model_name': 'vertex_ai/text-bison', 'stripped_model_name': 'vertex_ai/text-bison', 'combined_stripped_model_name': 'vertex_ai/text-bison', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4508 - model=vertex_ai/text-bison, custom_llm_provider=vertex_ai has no input_cost_per_token in model_cost_map. Defaulting to 0.
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4520 - model=vertex_ai/text-bison, custom_llm_provider=vertex_ai has no output_cost_per_token in model_cost_map. Defaulting to 0.
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'text-bison', 'max_tokens': 2048, 'max_input_tokens': 8192, 'max_output_tokens': 2048, 'input_cost_per_token': 0, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 2.5e-07, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 0, 'output_cost_per_audio_token': None, 'output_cost_per_character': 5e-07, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-text-models', 'mode': 'completion', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': False, 'supports_function_calling': False, 'supports_tool_choice': False, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=text-bison in litellm.model_cost: text-bison
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db', 'combined_model_name': '7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db', 'stripped_model_name': '7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db', 'combined_stripped_model_name': '7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db in litellm.model_cost: 7c27cdbe6e7243b38996f75a276973405fdf32c576c7e0af584cd6d6ee0c39db
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'chat-bison', 'combined_model_name': 'vertex_ai/chat-bison', 'stripped_model_name': 'vertex_ai/chat-bison', 'combined_stripped_model_name': 'vertex_ai/chat-bison', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'chat-bison', 'max_tokens': 4096, 'max_input_tokens': 8192, 'max_output_tokens': 4096, 'input_cost_per_token': 1.25e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 2.5e-07, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1.25e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': 5e-07, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-chat-models', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': False, 'supports_function_calling': False, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=chat-bison in litellm.model_cost: chat-bison
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': '8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d', 'combined_model_name': '8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d', 'stripped_model_name': '8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d', 'combined_stripped_model_name': '8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d in litellm.model_cost: 8e65c452dc9dd863c64ab337ce79fdf8bd4504bf9bce6dfeb91366dc2b43570d
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'code-bison', 'combined_model_name': 'vertex_ai/code-bison', 'stripped_model_name': 'vertex_ai/code-bison', 'combined_stripped_model_name': 'vertex_ai/code-bison', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'code-bison', 'max_tokens': 1024, 'max_input_tokens': 6144, 'max_output_tokens': 1024, 'input_cost_per_token': 1.25e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 2.5e-07, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1.25e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': 5e-07, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-code-text-models', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': False, 'supports_function_calling': False, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=code-bison in litellm.model_cost: code-bison
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543', 'combined_model_name': 'caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543', 'stripped_model_name': 'caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543', 'combined_stripped_model_name': 'caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543', 'custom_llm_provider': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4620 - Error getting model info: This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543 in litellm.model_cost: caea2a9dddd6408c361f60d9bcd0463230a10b0423ec1e6ff90618d137fa4543
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4413 - checking potential_model_names in litellm.model_cost: {'split_model': 'codechat-bison', 'combined_model_name': 'vertex_ai/codechat-bison', 'stripped_model_name': 'vertex_ai/codechat-bison', 'combined_stripped_model_name': 'vertex_ai/codechat-bison', 'custom_llm_provider': 'vertex_ai'}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:4709 - model_info: {'key': 'codechat-bison', 'max_tokens': 1024, 'max_input_tokens': 6144, 'max_output_tokens': 1024, 'input_cost_per_token': 1.25e-07, 'cache_creation_input_token_cost': None, 'cache_read_input_token_cost': None, 'input_cost_per_character': 2.5e-07, 'input_cost_per_token_above_128k_tokens': None, 'input_cost_per_token_above_200k_tokens': None, 'input_cost_per_query': None, 'input_cost_per_second': None, 'input_cost_per_audio_token': None, 'input_cost_per_token_batches': None, 'output_cost_per_token_batches': None, 'output_cost_per_token': 1.25e-07, 'output_cost_per_audio_token': None, 'output_cost_per_character': 5e-07, 'output_cost_per_reasoning_token': None, 'output_cost_per_token_above_128k_tokens': None, 'output_cost_per_character_above_128k_tokens': None, 'output_cost_per_token_above_200k_tokens': None, 'output_cost_per_second': None, 'output_cost_per_image': None, 'output_vector_size': None, 'litellm_provider': 'vertex_ai-code-chat-models', 'mode': 'chat', 'supports_system_messages': None, 'supports_response_schema': None, 'supports_vision': False, 'supports_function_calling': False, 'supports_tool_choice': True, 'supports_assistant_prefill': False, 'supports_prompt_caching': False, 'supports_audio_input': False, 'supports_audio_output': False, 'supports_pdf_input': False, 'supports_embedding_image_input': False, 'supports_native_streaming': None, 'supports_web_search': False, 'supports_reasoning': False, 'search_context_cost_per_query': None, 'tpm': None, 'rpm': None}
+[92m15:13:37 - LiteLLM:DEBUG[0m: utils.py:2296 - added/updated model=codechat-bison in litellm.model_cost: codechat-bison
+[92m15:13:37 - LiteLLM Router:DEBUG[0m: router.py:4453 - 
+Initialized Model List ['gpt-3.5-turbo', 'gemini-2.0-flash', 'gemini-2.5-pro-preview-03-25', 'gemini-2.0-flash-lite', 'gpt-4o-mini', 'gpt-4o', 'gpt-o1-mini', 'vertex-gemini-pro', 'vertex-gemini-pro-vision', 'vertex-gemini-1.5-pro', 'vertex-gemini-1.5-flash', 'vertex-text-bison', 'vertex-chat-bison', 'vertex-code-bison', 'vertex-codechat-bison']
+[92m15:13:37 - LiteLLM Router:INFO[0m: router.py:649 - Routing strategy: simple-shuffle
+[92m15:13:37 - LiteLLM Router:DEBUG[0m: router.py:534 - Intialized router with Routing strategy: simple-shuffle
+
+Routing enable_pre_call_checks: False
+
+Routing fallbacks: None
+
+Routing content fallbacks: None
+
+Routing context window fallbacks: None
+
+Router Redis Caching=None
+
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: utils.py:1158 - Creating Prisma Client..
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: utils.py:1181 - Success - Created Prisma Client
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: utils.py:2227 - PrismaClient: connect() called Attempting to Connect to DB
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: utils.py:2231 - PrismaClient: DB not connected, Attempting to Connect to DB
+[92m15:13:37 - LiteLLM Proxy:DEBUG[0m: proxy_server.py:569 - prisma_client: <litellm.proxy.utils.PrismaClient object at 0x1391cb0b0>
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://localhost:4000 (Press CTRL+C to quit)
+[92m15:13:37 - LiteLLM Proxy:INFO[0m: utils.py:1288 - All necessary views exist!
+[92m15:13:39 - LiteLLM:DEBUG[0m: user_api_key_auth.py:553 - api key not found in cache.
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: common_request_processing.py:198 - Request received by LiteLLM:
+{
+    "model": "vertex-text-bison",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Hello from Vertex AI! Please respond with a simple greeting."
+        }
+    ],
+    "max_tokens": 50
+}
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: litellm_pre_call_utils.py:521 - Request Headers: Headers({'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'authorization': 'Bearer sk-1234', 'content-length': '171'})
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: litellm_pre_call_utils.py:527 - receiving data: {'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50, 'proxy_server_request': {'url': 'http://localhost:4000/chat/completions', 'method': 'POST', 'headers': {'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'content-length': '171'}, 'body': {'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50}}}
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: litellm_pre_call_utils.py:689 - [PROXY] returned data from litellm_pre_call_utils: {'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50, 'proxy_server_request': {'url': 'http://localhost:4000/chat/completions', 'method': 'POST', 'headers': {'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'content-length': '171'}, 'body': {'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50}}, 'metadata': {'requester_metadata': {}, 'user_api_key_hash': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'user_api_key_alias': None, 'user_api_key_team_id': None, 'user_api_key_user_id': 'default_user_id', 'user_api_key_org_id': None, 'user_api_key_team_alias': None, 'user_api_key_end_user_id': None, 'user_api_key_user_email': None, 'user_api_key': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'user_api_end_user_max_budget': None, 'litellm_api_version': '1.67.0', 'global_max_parallel_requests': None, 'user_api_key_team_max_budget': None, 'user_api_key_team_spend': None, 'user_api_key_spend': 0.0, 'user_api_key_max_budget': None, 'user_api_key_model_max_budget': {}, 'user_api_key_metadata': {}, 'headers': {'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'content-length': '171'}, 'endpoint': 'http://localhost:4000/chat/completions', 'litellm_parent_otel_span': None, 'requester_ip_address': ''}}
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: utils.py:524 - Inside Proxy Logging Pre-call hook!
+[92m15:13:39 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - 500: {'error': 'Service temporarily unavailable. Please try again later.'}
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/entitlement_callback.py", line 78, in async_pre_call_hook
+    user_id = data["metadata"]["headers"]["x-openwebui-user-id"]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'x-openwebui-user-id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 202, in base_process_llm_request
+    self.data, logging_obj = await self.common_processing_pre_call_logic(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 159, in common_processing_pre_call_logic
+    self.data = await proxy_logging_obj.pre_call_hook(  # type: ignore
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/utils.py", line 582, in pre_call_hook
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/utils.py", line 569, in pre_call_hook
+    response = await _callback.async_pre_call_hook(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/entitlement_callback.py", line 128, in async_pre_call_hook
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: {'error': 'Service temporarily unavailable. Please try again later.'}
+[92m15:13:39 - LiteLLM:DEBUG[0m: utils.py:324 - Initialized litellm callbacks, Async Success Callbacks: [<bound method Router.deployment_callback_on_success of <litellm.router.Router object at 0x138e06c30>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x1382247a0>, <entitlement_callback.EntitlementCallback object at 0x1393d0710>, <litellm.proxy.hooks.proxy_track_cost_callback._ProxyDBLogger object at 0x13a0ad6d0>, <litellm.proxy.hooks.max_budget_limiter._PROXY_MaxBudgetLimiter object at 0x149f9fcb0>, <litellm.proxy.hooks.managed_files._PROXY_LiteLLMManagedFiles object at 0x14f0b1550>, <litellm.proxy.hooks.parallel_request_limiter._PROXY_MaxParallelRequestsHandler object at 0x13a1229f0>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x13a120e30>, <litellm._service_logger.ServiceLogging object at 0x1380fd7f0>]
+[92m15:13:39 - LiteLLM:DEBUG[0m: litellm_logging.py:424 - self.optional_params: {}
+[92m15:13:39 - LiteLLM:DEBUG[0m: litellm_logging.py:424 - self.optional_params: {'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50}
+[92m15:13:39 - LiteLLM:DEBUG[0m: litellm_logging.py:787 - [92m{'litellm_trace_id': None, 'litellm_call_id': 'a929c0f6-e2fe-47b5-9b1f-8425a736182c', 'input': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'litellm_params': {'acompletion': None, 'api_key': None, 'force_timeout': 600, 'logger_fn': None, 'verbose': False, 'custom_llm_provider': None, 'api_base': '', 'litellm_call_id': 'a929c0f6-e2fe-47b5-9b1f-8425a736182c', 'model_alias_map': None, 'completion_call_id': None, 'aembedding': None, 'metadata': {'requester_metadata': {}, 'user_api_key_hash': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'user_api_key_alias': None, 'user_api_key_team_id': None, 'user_api_key_user_id': 'default_user_id', 'user_api_key_org_id': None, 'user_api_key_team_alias': None, 'user_api_key_end_user_id': None, 'user_api_key_user_email': None, 'user_api_key': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'user_api_end_user_max_budget': None, 'litellm_api_version': '1.67.0', 'global_max_parallel_requests': None, 'user_api_key_team_max_budget': None, 'user_api_key_team_spend': None, 'user_api_key_spend': 0.0, 'user_api_key_max_budget': None, 'user_api_key_model_max_budget': {}, 'user_api_key_metadata': {}, 'headers': {'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'content-length': '171'}, 'endpoint': 'http://localhost:4000/chat/completions', 'litellm_parent_otel_span': None, 'requester_ip_address': ''}, 'model_info': None, 'proxy_server_request': {'url': 'http://localhost:4000/chat/completions', 'method': 'POST', 'headers': {'host': 'localhost:4000', 'user-agent': 'curl/8.7.1', 'accept': '*/*', 'content-type': 'application/json', 'content-length': '171'}, 'body': {'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50}}, 'preset_cache_key': None, 'no-log': None, 'stream_response': {}, 'input_cost_per_token': None, 'input_cost_per_second': None, 'output_cost_per_token': None, 'output_cost_per_second': None, 'cooldown_time': None, 'text_completion': None, 'azure_ad_token_provider': None, 'user_continue_message': None, 'base_model': None, 'litellm_trace_id': None, 'hf_model_name': None, 'custom_prompt_dict': None, 'litellm_metadata': None, 'disable_add_transform_inline_image_block': None, 'drop_params': None, 'prompt_id': None, 'prompt_variables': None, 'async_call': None, 'ssl_verify': None, 'merge_reasoning_content_in_choices': None, 'api_version': None, 'azure_ad_token': None, 'tenant_id': None, 'client_id': None, 'client_secret': None, 'azure_username': None, 'azure_password': None, 'max_retries': None, 'timeout': None, 'bucket_name': None, 'vertex_credentials': None, 'vertex_project': None}, 'applied_guardrails': [], 'model': 'vertex-text-bison', 'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'optional_params': {'messages': [{'role': 'user', 'content': 'Hello from Vertex AI! Please respond with a simple greeting.'}], 'max_tokens': 50}, 'start_time': datetime.datetime(2025, 8, 20, 15, 13, 39, 446423), 'stream': False, 'user': '', 'call_type': 'IGNORE_THIS', 'completion_start_time': None, 'standard_callback_dynamic_params': {}, 'stream_options': None, 'max_tokens': 50, 'api_key': '', 'additional_args': {}, 'log_event_type': 'pre_api_call'}[0m
+
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: parallel_request_limiter.py:48 - Inside Max Parallel Request Failure Hook
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: parallel_request_limiter.py:48 - user_api_key: 88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: parallel_request_limiter.py:48 - updated_value in failure call: {'current_requests': 0, 'current_tpm': 0, 'current_rpm': 0}
+[92m15:13:39 - LiteLLM:DEBUG[0m: litellm_logging.py:2072 - Logging Details LiteLLM-Failure Call: [<bound method Router.deployment_callback_on_failure of <litellm.router.Router object at 0x138e06c30>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x1382247a0>, <entitlement_callback.EntitlementCallback object at 0x1393d0710>, <litellm.proxy.hooks.proxy_track_cost_callback._ProxyDBLogger object at 0x13a0ad6d0>, <litellm.proxy.hooks.max_budget_limiter._PROXY_MaxBudgetLimiter object at 0x149f9fcb0>, <litellm.proxy.hooks.managed_files._PROXY_LiteLLMManagedFiles object at 0x14f0b1550>, <litellm.proxy.hooks.parallel_request_limiter._PROXY_MaxParallelRequestsHandler object at 0x13a1229f0>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x13a120e30>, <litellm._service_logger.ServiceLogging object at 0x1380fd7f0>]
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: common_request_processing.py:341 - [1;31mAn error occurred: 500: {'error': 'Service temporarily unavailable. Please try again later.'} 
+
+ Debug this by setting `--debug`, e.g. `litellm --model gpt-3.5-turbo --debug`
+[92m15:13:39 - LiteLLM Router:DEBUG[0m: router.py:3910 - Router: Entering 'deployment_callback_on_failure'
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:91 - Enters prisma db call, response_cost: 0.0, token: 88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b; user_id: default_user_id; team_id: None
+[92m15:13:39 - LiteLLM Router:DEBUG[0m: router.py:3951 - Router: Exiting 'deployment_callback_on_failure' without cooldown. No model_info found.
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: spend_tracking_utils.py:69 - getting payload for SpendLogs, available keys in metadata: ['requester_metadata', 'user_api_key_hash', 'user_api_key_alias', 'user_api_key_team_id', 'user_api_key_user_id', 'user_api_key_org_id', 'user_api_key_team_alias', 'user_api_key_end_user_id', 'user_api_key_user_email', 'user_api_key', 'user_api_end_user_max_budget', 'litellm_api_version', 'global_max_parallel_requests', 'user_api_key_team_max_budget', 'user_api_key_team_spend', 'user_api_key_spend', 'user_api_key_max_budget', 'user_api_key_model_max_budget', 'user_api_key_metadata', 'headers', 'endpoint', 'litellm_parent_otel_span', 'requester_ip_address', 'status', 'error_information']
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: spend_tracking_utils.py:295 - SpendTable: created payload - payload: {
+    "request_id": "a929c0f6-e2fe-47b5-9b1f-8425a736182c",
+    "call_type": "",
+    "api_key": "",
+    "cache_hit": "False",
+    "startTime": "2025-08-20 08:13:39.450227+00:00",
+    "endTime": "2025-08-20 08:13:39.450228+00:00",
+    "completionStartTime": "2025-08-20 08:13:39.450228+00:00",
+    "model": "vertex-text-bison",
+    "user": "default_user_id",
+    "team_id": "",
+    "metadata": "{\"user_api_key\": \"88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b\", \"user_api_key_alias\": null, \"user_api_key_team_id\": null, \"user_api_key_org_id\": null, \"user_api_key_user_id\": \"default_user_id\", \"user_api_key_team_alias\": null, \"requester_ip_address\": \"\", \"status\": \"failure\", \"error_information\": {\"error_code\": \"500\", \"error_class\": \"HTTPException\", \"llm_provider\": \"\", \"traceback\": \"  File \\\"/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py\\\", line 3385, in chat_completion\\n    return await base_llm_response_processor.base_process_llm_request(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py\\\", line 202, in base_process_llm_request\\n    self.data, logging_obj = await self.common_processing_pre_call_logic(\\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py\\\", line 159, in common_processing_pre_call_logic\\n    self.data = await proxy_logging_obj.pre_call_hook(  # type: ignore\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/dale/Works/Moneta/src/litellm/litellm/proxy/utils.py\\\", line 582, in pre_call_hook\\n    raise e\\n  File \\\"/Users/dale/Works/Moneta/src/litellm/litellm/proxy/utils.py\\\", line 569, in pre_call_hook\\n    response = await _callback.async_pre_call_hook(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/dale/Works/Moneta/src/litellm/entitlement_callback.py\\\", line 128, in async_pre_call_hook\\n    raise HTTPException(\\n\", \"error_message\": \"500: {'error': 'Service temporarily unavailable. Please try again later.'}\"}, \"applied_guardrails\": null, \"batch_models\": null, \"mcp_tool_call_metadata\": null, \"usage_object\": null, \"model_map_information\": null, \"additional_usage_values\": {}}",
+    "cache_key": "Cache OFF",
+    "spend": 0,
+    "total_tokens": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "request_tags": "[]",
+    "end_user": "",
+    "api_base": "",
+    "model_group": "",
+    "model_id": "",
+    "requester_ip_address": "",
+    "custom_llm_provider": "",
+    "messages": "{}",
+    "response": "{}"
+}
+
+
+[92m15:13:39 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:334 - Writing spend log to db - request_id: a929c0f6-e2fe-47b5-9b1f-8425a736182c, spend: 0.0
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:182 - Runs spend update on all tables
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:36 - Adding update to queue: {'entity_type': <Litellm_EntityType.USER: 'user'>, 'entity_id': 'default_user_id', 'response_cost': 0.0}
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:36 - Adding update to queue: {'entity_type': <Litellm_EntityType.KEY: 'key'>, 'entity_id': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'response_cost': 0.0}
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:269 - track_cost_callback: team_id is None or prisma_client is None. Not tracking spend for team
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:310 - track_cost_callback: org_id is None or prisma_client is None. Not tracking spend for org
+[92m15:13:39 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:1055 - Logged request status: failure
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:62 - Adding update to queue: {'default_user_id_2025-08-20__vertex-text-bison_': {'user_id': 'default_user_id', 'date': '2025-08-20', 'api_key': '', 'model': 'vertex-text-bison', 'model_group': '', 'custom_llm_provider': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'spend': 0.0, 'api_requests': 1, 'successful_requests': 0, 'failed_requests': 1, 'cache_read_input_tokens': 0, 'cache_creation_input_tokens': 0}}
+[92m15:13:39 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:1055 - Logged request status: failure
+[92m15:13:39 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:62 - Adding update to queue: {'_2025-08-20__vertex-text-bison_': {'team_id': '', 'date': '2025-08-20', 'api_key': '', 'model': 'vertex-text-bison', 'model_group': '', 'custom_llm_provider': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'spend': 0.0, 'api_requests': 1, 'successful_requests': 0, 'failed_requests': 1, 'cache_read_input_tokens': 0, 'cache_creation_input_tokens': 0}}
+[92m15:13:39 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:1055 - Logged request status: failure
+
+[1;37m#------------------------------------------------------------#[0m
+[1;37m#                                                            #[0m
+[1;37m#            'The thing I wish you improved is...'            #[0m
+[1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+[1;37m#                                                            #[0m
+[1;37m#------------------------------------------------------------#[0m
+
+ Thank you for using LiteLLM! - Krrish & Ishaan
+
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+
+
+LagoLogger initialized with base: https://askii-lago-api.dev.pressingly.net
+LagoLogger initialized with base: https://askii-lago-api.dev.pressingly.net
+[32mLiteLLM: Proxy initialized with Config, Set models:[0m
+[32m    gpt-3.5-turbo[0m
+[32m    gemini-2.0-flash[0m
+[32m    gemini-2.5-pro-preview-03-25[0m
+[32m    gemini-2.0-flash-lite[0m
+[32m    gpt-4o-mini[0m
+[32m    gpt-4o[0m
+[32m    gpt-o1-mini[0m
+[32m    vertex-gemini-pro[0m
+[32m    vertex-gemini-pro-vision[0m
+[32m    vertex-gemini-1.5-pro[0m
+[32m    vertex-gemini-1.5-flash[0m
+[32m    vertex-text-bison[0m
+[32m    vertex-chat-bison[0m
+[32m    vertex-code-bison[0m
+[32m    vertex-codechat-bison[0m
+async_pre_call_hook
+Exception in async_pre_call_hook: 'x-openwebui-user-id'
+INFO:     ::1:59031 - "POST /chat/completions HTTP/1.1" 500 Internal Server Error
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: [{'entity_type': <Litellm_EntityType.USER: 'user'>, 'entity_id': 'default_user_id', 'response_cost': 0.0}, {'entity_type': <Litellm_EntityType.KEY: 'key'>, 'entity_id': '88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b', 'response_cost': 0.0}]
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {'default_user_id': 0}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {'88dc28d0f030c55ed4ab77ed8faf098196cb1c05df778539800c9f1243fe6b4b': 0}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {'default_user_id_2025-08-20__vertex-text-bison_': {'user_id': 'default_user_id', 'date': '2025-08-20', 'api_key': '', 'model': 'vertex-text-bison', 'model_group': '', 'custom_llm_provider': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'spend': 0.0, 'api_requests': 1, 'successful_requests': 0, 'failed_requests': 1, 'cache_read_input_tokens': 0, 'cache_creation_input_tokens': 0}}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 1
+[92m15:13:44 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:942 - Processed 1 daily user transactions in 0.02s
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {'_2025-08-20__vertex-text-bison_': {'team_id': '', 'date': '2025-08-20', 'api_key': '', 'model': 'vertex-text-bison', 'model_group': '', 'custom_llm_provider': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'spend': 0.0, 'api_requests': 1, 'successful_requests': 0, 'failed_requests': 1, 'cache_read_input_tokens': 0, 'cache_creation_input_tokens': 0}}
+[92m15:13:44 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 1
+[92m15:13:45 - LiteLLM Proxy:INFO[0m: db_spend_update_writer.py:942 - Processed 1 daily team transactions in 0.00s
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 1
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: utils.py:2530 - Flushed 1 logs to the DB.
+[92m15:13:45 - LiteLLM Proxy:DEBUG[0m: utils.py:2537 - 1 logs processed. Remaining in queue: 0
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:13:51 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:13:58 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:14:05 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:14:12 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:14:19 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: spend_update_queue.py:31 - Aggregating updates by entity type: []
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:540 - User Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:583 - End-User Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:598 - KEY Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:636 - Team Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:684 - Team Membership Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:731 - Org Spend transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily User Spend transactions: 0
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily user spend update
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Team Spend transactions: 0
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily team spend update
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: daily_spend_update_queue.py:93 - Aggregated daily spend update transactions: {}
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:829 - Daily Tag Spend transactions: 0
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: db_spend_update_writer.py:843 - No new transactions to process for daily tag spend update
+[92m15:14:26 - LiteLLM Proxy:DEBUG[0m: utils.py:2592 - Spend Logs transactions: 0
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+[92m15:14:33 - LiteLLM Proxy:INFO[0m: proxy_server.py:446 - Shutting down LiteLLM Proxy Server
+[92m15:14:33 - LiteLLM Proxy:DEBUG[0m: proxy_server.py:448 - Disconnecting from Prisma
+INFO:     Application shutdown complete.
+INFO:     Finished server process [42341]

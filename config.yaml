@@ -30,6 +30,59 @@ model_list:
     litellm_params:
       model: openai/o1-mini
       api_key: "os.environ/OPENAI_API_KEY"
+  
+  # Vertex AI Models - Gemini
+  - model_name: vertex-gemini-pro
+    litellm_params:
+      model: vertex_ai/gemini-pro
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  - model_name: vertex-gemini-pro-vision
+    litellm_params:
+      model: vertex_ai/gemini-pro-vision
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  - model_name: vertex-gemini-1.5-pro
+    litellm_params:
+      model: vertex_ai/gemini-1.5-pro-001
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  - model_name: vertex-gemini-1.5-flash
+    litellm_params:
+      model: vertex_ai/gemini-1.5-flash-001
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  # Vertex AI Models - PaLM/Bison
+  - model_name: vertex-text-bison
+    litellm_params:
+      model: vertex_ai/text-bison
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  - model_name: vertex-chat-bison
+    litellm_params:
+      model: vertex_ai/chat-bison
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  # Vertex AI Models - Code Generation
+  - model_name: vertex-code-bison
+    litellm_params:
+      model: vertex_ai/code-bison
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
+  
+  - model_name: vertex-codechat-bison
+    litellm_params:
+      model: vertex_ai/codechat-bison
+      vertex_project: os.environ/VERTEX_PROJECT
+      vertex_location: os.environ/VERTEX_LOCATION
 
 litellm_settings:
-  callbacks: ["entitlement_callback.entitlement_checker"]
+  # callbacks: ["entitlement_callback.entitlement_checker"]  # Temporarily disabled for Vertex AI testing
+  drop_params: true
+  set_verbose: false

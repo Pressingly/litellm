@@ -1,0 +1,1456 @@
+Environment variables loaded from ../../.env
+Prisma schema loaded from schema.prisma
+Datasource "client": PostgreSQL database "litellm", schema "public" at "localhost:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client Python (v0.11.0)
+
+Some types are disabled by default due to being incompatible with Mypy, it is highly recommended
+to use Pyright instead and configure Prisma Python to use recursive types. To re-enable certain types:
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = -1
+}
+
+If you need to use Mypy, you can also disable this message by explicitly setting the default value:
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+For more information see: https://prisma-client-py.readthedocs.io/en/stable/reference/limitations/#default-type-limitations
+
+
+[2K[1A[2K[G✔ Generated Prisma Client Python (v0.11.0) to 
+./../../../../../../Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/
+lib/python3.12/site-packages/prisma in 168ms
+
+INFO:     Started server process [44613]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://localhost:4000 (Press CTRL+C to quit)
+[92m15:15:39 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.APIConnectionError: 403 Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes. [reason: "USER_PROJECT_DENIED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "gen-lang-client-0368966000"
+}
+metadata {
+  key: "consumer"
+  value: "projects/gen-lang-client-0368966000"
+}
+, locale: "en-US"
+message: "Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes."
+, links {
+  description: "Google developer console IAM admin"
+  url: "https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000"
+}
+]. Received Model Group=vertex-text-bison
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/vertex_ai_non_gemini.py", line 214, in completion
+    llm_model = _vertex_llm_model_object or TextGenerationModel.from_pretrained(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/vertexai/_model_garden/_model_garden_models.py", line 290, in from_pretrained
+    return _from_pretrained(interface_class=cls, model_name=model_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/vertexai/_model_garden/_model_garden_models.py", line 207, in _from_pretrained
+    model_info = _get_model_info(
+                 ^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/vertexai/_model_garden/_model_garden_models.py", line 123, in _get_model_info
+    _publisher_models._PublisherModel(  # pylint: disable=protected-access
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/cloud/aiplatform/_publisher_models.py", line 77, in __init__
+    self._gca_resource = getattr(self.api_client, self._getter_method)(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/cloud/aiplatform_v1/services/model_garden_service/client.py", line 923, in get_publisher_model
+    response = rpc(
+               ^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.PermissionDenied: 403 Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes. [reason: "USER_PROJECT_DENIED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "gen-lang-client-0368966000"
+}
+metadata {
+  key: "consumer"
+  value: "projects/gen-lang-client-0368966000"
+}
+, locale: "en-US"
+message: "Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes."
+, links {
+  description: "Google developer console IAM admin"
+  url: "https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000"
+}
+]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 469, in acompletion
+    init_response = await loop.run_in_executor(None, func_with_context)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/miniconda3/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 982, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 3182, in completion
+    raise exception_type(
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 2509, in completion
+    model_response = vertex_ai_non_gemini.completion(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/vertex_ai_non_gemini.py", line 481, in completion
+    raise litellm.APIConnectionError(
+litellm.exceptions.APIConnectionError: litellm.APIConnectionError: 403 Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes. [reason: "USER_PROJECT_DENIED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "gen-lang-client-0368966000"
+}
+metadata {
+  key: "consumer"
+  value: "projects/gen-lang-client-0368966000"
+}
+, locale: "en-US"
+message: "Caller does not have required permission to use project gen-lang-client-0368966000. Grant the caller the roles/serviceusage.serviceUsageConsumer role, or a custom role with the serviceusage.services.use permission, by visiting https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000 and then retry. Propagation of the new permission may take a few minutes."
+, links {
+  description: "Google developer console IAM admin"
+  url: "https://console.developers.google.com/iam-admin/iam/project?project=gen-lang-client-0368966000"
+}
+]. Received Model Group=vertex-text-bison
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+
+[1;37m#------------------------------------------------------------#[0m
+[1;37m#                                                            #[0m
+[1;37m#            'The thing I wish you improved is...'            #[0m
+[1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+[1;37m#                                                            #[0m
+[1;37m#------------------------------------------------------------#[0m
+
+ Thank you for using LiteLLM! - Krrish & Ishaan
+
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+
+
+[32mLiteLLM: Proxy initialized with Config, Set models:[0m
+[32m    gpt-3.5-turbo[0m
+[32m    gemini-2.0-flash[0m
+[32m    gemini-2.5-pro-preview-03-25[0m
+[32m    gemini-2.0-flash-lite[0m
+[32m    gpt-4o-mini[0m
+[32m    gpt-4o[0m
+[32m    gpt-o1-mini[0m
+[32m    vertex-gemini-pro[0m
+[32m    vertex-gemini-pro-vision[0m
+[32m    vertex-gemini-1.5-pro[0m
+[32m    vertex-gemini-1.5-flash[0m
+[32m    vertex-text-bison[0m
+[32m    vertex-chat-bison[0m
+[32m    vertex-code-bison[0m
+[32m    vertex-codechat-bison[0m
+INFO:     ::1:59659 - "POST /chat/completions HTTP/1.1" 500 Internal Server Error
+INFO:     ::1:60349 - "GET /ui/?userID=default_user_id&page=llm-playground HTTP/1.1" 200 OK
+INFO:     ::1:60363 - "GET /ui.txt?_rsc=1f2gt HTTP/1.1" 404 Not Found
+INFO:     ::1:60350 - "GET /model_group/info HTTP/1.1" 200 OK
+INFO:     ::1:60349 - "GET /sso/get/ui_settings HTTP/1.1" 200 OK
+INFO:     ::1:60360 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:60362 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:60361 - "GET /team/list HTTP/1.1" 200 OK
+INFO:     ::1:60418 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:60490 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:60558 - "POST /responses HTTP/1.1" 200 OK
+INFO:     ::1:60608 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:60655 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:60769 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:60995 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:61091 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:62155 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62158 - "GET /tag/list HTTP/1.1" 200 OK
+INFO:     ::1:62157 - "GET /tag/daily/activity?start_date=2025-07-23T08%3A21%3A31.505Z&end_date=2025-08-20T08%3A21%3A31.505Z&page_size=1000&page=1 HTTP/1.1" 200 OK
+INFO:     ::1:62156 - "GET /team/daily/activity?start_date=2025-07-23T08%3A21%3A31.500Z&end_date=2025-08-20T08%3A21%3A31.500Z&page_size=1000&page=1&exclude_team_ids=litellm-dashboard HTTP/1.1" 200 OK
+INFO:     ::1:62159 - "GET /user/daily/activity?start_date=2025-07-23T08%3A21%3A31.480Z&end_date=2025-08-20T08%3A21%3A31.480Z&page_size=1000&page=1 HTTP/1.1" 200 OK
+INFO:     ::1:62303 - "GET /team/available HTTP/1.1" 400 Bad Request
+INFO:     ::1:62304 - "GET /get/default_team_settings HTTP/1.1" 200 OK
+INFO:     ::1:62306 - "GET /guardrails/list HTTP/1.1" 200 OK
+INFO:     ::1:62307 - "GET /models?return_wildcard_routes=True HTTP/1.1" 200 OK
+INFO:     ::1:62304 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /team/list HTTP/1.1" 200 OK
+INFO:     ::1:62304 - "GET /models?return_wildcard_routes=True HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /team/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /models?return_wildcard_routes=True HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /user/list?page=1&page_size=25 HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /user/available_roles HTTP/1.1" 200 OK
+INFO:     ::1:62305 - "GET /sso/get/ui_settings HTTP/1.1" 200 OK
+INFO:     ::1:62304 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62307 - "GET /get/internal_user_settings HTTP/1.1" 200 OK
+INFO:     ::1:62307 - "GET /sso/get/ui_settings HTTP/1.1" 200 OK
+INFO:     ::1:62304 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /model_group/info HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /config/field/info?field_name=enable_public_model_hub HTTP/1.1" 400 Bad Request
+INFO:     ::1:62328 - "GET /spend/logs/ui?start_date=2025-08-19+08%3A22%3A00&end_date=2025-08-20+08%3A22%3A00&page=1&page_size=50 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/chatcmpl-d64f6620-3f9f-49d9-81e8-2f6419b7ac9f?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62333 - "GET /spend/logs/ui/chatcmpl-8c1663a0-eff1-437c-afe8-e01c7cc5d4d6?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /spend/logs/ui/chatcmpl-18e1edaf-3374-4c96-8e49-21ae84d98953?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62335 - "GET /spend/logs/ui/chatcmpl-1d10eb0e-cc4c-4d10-90b0-23d04415b6ce?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62336 - "GET /spend/logs/ui/17e119a0-faa4-4a54-8369-1eabd183147e?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62337 - "GET /spend/logs/ui/chatcmpl-3b061752-b96e-4af3-b632-02c16e1d437c?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/chatcmpl-698bf582-dec2-488d-aa10-4b18a50d1528?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62333 - "GET /spend/logs/ui/chatcmpl-c25d8643-9d85-405d-9336-9ef8a6755629?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /spend/logs/ui/c6f18953-b749-4252-8648-e35b7be4f73f?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62335 - "GET /spend/logs/ui/a929c0f6-e2fe-47b5-9b1f-8425a736182c?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62337 - "GET /spend/logs/ui/c2af2878-54de-4ebb-bdb5-96d459a021ba?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62336 - "GET /spend/logs/ui/b1dfcc4b-a3cb-4783-bca0-93f79c6f0d51?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/e27f0b47-c6a7-4fd9-ad44-83c133528b78?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62333 - "GET /spend/logs/ui/8bd7e987-b6e4-4dee-912b-eafb4431ebc3?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62337 - "GET /spend/logs/ui/8675ebd5-9804-4de4-b567-56a81e2fb03d?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/f8b19362-2e1e-4f36-8c2b-2d4500d9cb79?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62335 - "GET /spend/logs/ui/4bcd5629-b40a-4cc9-9215-511758bd0595?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62336 - "GET /spend/logs/ui/a06a2c50-4e00-44df-b389-c6337e22f73f?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /spend/logs/ui/753a03ba-675d-4e15-ba6b-53a70c3486c6?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62333 - "GET /spend/logs/ui/50ad3266-2140-4aa4-9bce-91064c9f77d0?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62337 - "GET /spend/logs/ui/a8ad5d92-f796-413c-9830-e63dd23971a1?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/644cb2dc-1457-49fb-81d3-2a8c56002baf?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62335 - "GET /spend/logs/ui/98f5d67f-0256-438d-8b1a-70e292137c89?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62336 - "GET /spend/logs/ui/6115dd0e-ca3d-4c31-8440-86f74ff2a758?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /spend/logs/ui/adcb0096-cab3-464b-93af-b529e46ac5a3?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62333 - "GET /spend/logs/ui/1bfdceff-06a9-4a34-8c98-5b069bac6a3a?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62337 - "GET /spend/logs/ui/7d2c64ee-19bd-4e76-9638-ff8b43501ea0?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62328 - "GET /spend/logs/ui/95fe711b-3e4e-4e11-9885-637337c93d9f?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62335 - "GET /spend/logs/ui/86b62233-2a39-45b3-aa30-1893a45312fc?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62336 - "GET /spend/logs/ui/b06cf8f6-c473-4325-880c-6b4c64b3a564?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /spend/logs/ui/chatcmpl-C6DKNtAynTw8crTtE58NZSXQnxTF6?start_date=2025-08-19%2008%3A22%3A00 HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /model_group/info HTTP/1.1" 200 OK
+INFO:     ::1:62334 - "GET /config/field/info?field_name=enable_public_model_hub HTTP/1.1" 400 Bad Request
+INFO:     ::1:62360 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62361 - "GET /guardrails/list HTTP/1.1" 200 OK
+INFO:     ::1:62362 - "GET /models?return_wildcard_routes=True HTTP/1.1" 200 OK
+INFO:     ::1:62361 - "GET /sso/get/ui_settings HTTP/1.1" 200 OK
+INFO:     ::1:62362 - "GET /models?return_wildcard_routes=True HTTP/1.1" 200 OK
+INFO:     ::1:62363 - "GET /team/list HTTP/1.1" 200 OK
+INFO:     ::1:62360 - "GET /key/list?page=1&size=50&return_full_object=true&include_team_keys=true HTTP/1.1" 200 OK
+INFO:     ::1:62364 - "GET /key/list?page=1&size=100&return_full_object=true&include_team_keys=true HTTP/1.1" 200 OK
+INFO:     ::1:62361 - "GET /organization/list HTTP/1.1" 200 OK
+INFO:     ::1:62365 - "GET /user/list?page=1&page_size=100 HTTP/1.1" 200 OK
+INFO:     ::1:62362 - "GET /user/info HTTP/1.1" 200 OK
+INFO:     ::1:62363 - "GET /team/list HTTP/1.1" 200 OK
+INFO:     ::1:62364 - "GET /user/list?user_ids=default_user_id%2Cdefault_user_id%2Cdefault_user_id&page=1&page_size=100 HTTP/1.1" 200 OK
+INFO:     ::1:62363 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62364 - "GET /model_group/info HTTP/1.1" 200 OK
+INFO:     ::1:62363 - "GET /tag/list HTTP/1.1" 200 OK
+INFO:     ::1:61533 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61545 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61546 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61583 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61606 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61631 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61667 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61668 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61746 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61747 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:61770 - "GET /models HTTP/1.1" 200 OK
+[92m16:00:15 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1258, in async_completion
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 256, in post
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 212, in post
+    response.raise_for_status()
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCXQUs0B0qLW6JBcwHDR-I0781EZ4rfgN4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1264, in async_completion
+    raise VertexAIError(
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 1254, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:61771 - "POST /chat/completions HTTP/1.1" 429 Too Many Requests
+INFO:     ::1:61786 - "GET /models HTTP/1.1" 200 OK
+[92m16:00:18 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1258, in async_completion
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 256, in post
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 212, in post
+    response.raise_for_status()
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCXQUs0B0qLW6JBcwHDR-I0781EZ4rfgN4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1264, in async_completion
+    raise VertexAIError(
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 1254, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:61787 - "POST /chat/completions HTTP/1.1" 429 Too Many Requests
+INFO:     ::1:61840 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61841 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:62860 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62868 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62869 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62964 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62965 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62966 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63014 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63017 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63018 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63039 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63040 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63086 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63087 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:63098 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63099 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:63114 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63119 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:63313 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:63314 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:64311 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:64318 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:64569 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:64570 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:64840 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:64841 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:65482 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:65485 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:49222 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49223 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:49432 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49433 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:49828 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49829 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:50209 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50210 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:50376 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50377 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:50524 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50525 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:50982 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50983 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:51230 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:51233 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:51359 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:51360 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:53235 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53244 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53565 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 16:21:28 +07)" was missed by 0:00:05.212109
+INFO:     ::1:53693 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 16:37:28 +07)" was missed by 0:00:01.145450
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 16:44:29 +07)" was missed by 0:02:49.147406
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 16:52:32 +07)" was missed by 0:00:05.149453
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 16:54:26 +07)" was missed by 0:08:00.152297
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 16:53:20 +07)" was missed by 0:00:03.404863
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 16:53:28 +07)" was missed by 0:00:03.821359
+INFO:     ::1:54697 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:54804 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 17:11:44 +07)" was missed by 0:00:02.211882
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 17:14:20 +07)" was missed by 0:07:15.214506
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 17:29:20 +07)" was missed by 0:00:01.117234
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 17:34:14 +07)" was missed by 0:04:56.149906
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 17:47:20 +07)" was missed by 0:00:08.005169
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 17:54:08 +07)" was missed by 0:03:09.108047
+Execution of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 17:47:20 +07)" skipped: maximum number of running instances reached (1)
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 18:04:32 +07)" was missed by 0:00:03.402369
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 18:14:02 +07)" was missed by 0:00:22.413043
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 18:19:04 +07)" was missed by 0:00:01.002595
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 18:23:59 +07)" was missed by 0:04:55.108893
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 18:36:08 +07)" was missed by 0:00:06.192122
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 18:43:53 +07)" was missed by 0:02:10.211559
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 18:53:36 +07)" was missed by 0:00:07.155227
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 18:53:50 +07)" was missed by 0:09:42.168797
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 19:09:52 +07)" was missed by 0:00:08.118965
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 19:13:44 +07)" was missed by 0:06:05.122180
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 19:20:00 +07)" was missed by 0:00:06.221615
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 19:23:41 +07)" was missed by 0:06:14.303298
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 19:37:52 +07)" was missed by 0:00:02.019058
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 19:43:35 +07)" was missed by 0:04:08.124196
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 19:55:36 +07)" was missed by 0:00:06.039824
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 20:03:29 +07)" was missed by 0:02:02.136574
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 20:11:20 +07)" was missed by 0:00:06.320135
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 20:13:26 +07)" was missed by 0:07:49.519333
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 20:21:04 +07)" was missed by 0:00:03.210041
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 20:23:23 +07)" was missed by 0:07:33.229754
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 20:38:32 +07)" was missed by 0:00:06.031242
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 20:43:17 +07)" was missed by 0:05:10.136399
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 20:54:40 +07)" was missed by 0:00:04.021491
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 21:03:11 +07)" was missed by 0:01:22.133483
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 20:55:20 +07)" was missed by 0:00:02.849875
+INFO:     ::1:57592 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 22:41:04 +07)" was missed by 0:00:06.031076
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 22:42:41 +07)" was missed by 0:08:18.122886
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 22:41:12 +07)" was missed by 0:00:04.875774
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 22:58:32 +07)" was missed by 0:00:04.442510
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 23:02:35 +07)" was missed by 0:05:50.459600
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 23:14:40 +07)" was missed by 0:00:07.067321
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 23:22:29 +07)" was missed by 0:02:07.165498
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 23:31:36 +07)" was missed by 0:00:06.157430
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 23:32:26 +07)" was missed by 0:09:05.163831
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-20 23:47:28 +07)" was missed by 0:00:02.764554
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-20 23:52:20 +07)" was missed by 0:04:59.880565
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 00:02:32 +07)" was missed by 0:00:02.848133
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 00:12:14 +07)" was missed by 0:00:10.235239
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 00:20:16 +07)" was missed by 0:00:04.231588
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 00:22:11 +07)" was missed by 0:07:58.239830
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 00:25:28 +07)" was missed by 0:00:03.837252
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 00:32:08 +07)" was missed by 0:03:12.859143
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 00:42:48 +07)" was missed by 0:00:04.171918
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 00:52:02 +07)" was missed by 0:00:39.175554
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 00:58:56 +07)" was missed by 0:00:01.146341
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 01:01:59 +07)" was missed by 0:06:47.163508
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 01:16:08 +07)" was missed by 0:00:02.342489
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 01:21:53 +07)" was missed by 0:04:06.391937
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 01:32:40 +07)" was missed by 0:00:04.201971
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 01:41:47 +07)" was missed by 0:00:46.203818
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 01:50:48 +07)" was missed by 0:00:05.290197
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 01:51:44 +07)" was missed by 0:08:58.330864
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 02:06:32 +07)" was missed by 0:00:01.099875
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 02:11:38 +07)" was missed by 0:04:44.117708
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 02:21:36 +07)" was missed by 0:00:05.224516
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 02:21:35 +07)" was missed by 0:09:55.313562
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 02:39:20 +07)" was missed by 0:00:03.358377
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 02:41:29 +07)" was missed by 0:07:43.365477
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 02:55:52 +07)" was missed by 0:00:05.008703
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 03:01:23 +07)" was missed by 0:04:23.129485
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 03:11:44 +07)" was missed by 0:00:01.129952
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 03:21:17 +07)" was missed by 0:00:17.131152
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 03:28:56 +07)" was missed by 0:00:06.130417
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 03:31:14 +07)" was missed by 0:07:37.132762
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 03:46:32 +07)" was missed by 0:00:07.100094
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 03:51:08 +07)" was missed by 0:05:20.168389
+INFO:     ::1:57195 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 04:02:08 +07)" was missed by 0:00:03.129089
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 04:11:02 +07)" was missed by 0:00:58.130224
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 04:18:40 +07)" was missed by 0:00:03.063357
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 04:20:59 +07)" was missed by 0:07:33.100725
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 04:22:48 +07)" was missed by 0:00:06.935068
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 04:30:56 +07)" was missed by 0:01:48.059582
+{"timestamp":"2025-08-20T21:23:04.019812Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+{"timestamp":"2025-08-20T21:23:04.831960Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+{"timestamp":"2025-08-20T21:23:04.898054Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+{"timestamp":"2025-08-20T21:23:04.901338Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+{"timestamp":"2025-08-20T21:23:04.968408Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 04:40:16 +07)" was missed by 0:00:02.973962
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 04:40:53 +07)" was missed by 0:09:14.981131
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 04:58:08 +07)" was missed by 0:00:01.163600
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 05:00:47 +07)" was missed by 0:07:11.169793
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 05:13:52 +07)" was missed by 0:00:04.130186
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 05:20:41 +07)" was missed by 0:03:04.230341
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 05:31:28 +07)" was missed by 0:00:08.154101
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 05:40:35 +07)" was missed by 0:00:50.165201
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 05:49:44 +07)" was missed by 0:00:06.121606
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 05:50:32 +07)" was missed by 0:09:07.130659
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 06:06:00 +07)" was missed by 0:00:02.507868
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 06:10:26 +07)" was missed by 0:05:25.749017
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 06:07:36 +07)" was missed by 0:00:08.000815
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 06:23:52 +07)" was missed by 0:00:02.944167
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 06:30:20 +07)" was missed by 0:03:24.062334
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 06:40:24 +07)" was missed by 0:00:05.069053
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 06:50:14 +07)" was missed by 0:00:04.084905
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 06:55:12 +07)" was missed by 0:00:07.229361
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 07:00:11 +07)" was missed by 0:04:57.244814
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 07:13:28 +07)" was missed by 0:00:04.981101
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 07:20:05 +07)" was missed by 0:03:16.984102
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 07:24:48 +07)" was missed by 0:00:08.369312
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 07:30:02 +07)" was missed by 0:04:43.384206
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 07:42:56 +07)" was missed by 0:00:07.928421
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 07:49:56 +07)" was missed by 0:02:57.045830
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:00:00 +07)" was missed by 0:00:02.165405
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 08:09:50 +07)" was missed by 0:00:01.363982
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:03:44 +07)" was missed by 0:00:04.194004
+INFO:     ::1:60544 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:15:28 +07)" was missed by 0:00:04.650608
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 08:19:47 +07)" was missed by 0:05:34.653238
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:15:52 +07)" was missed by 0:00:01.169710
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:16:32 +07)" was missed by 0:00:03.449074
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:25:52 +07)" was missed by 0:00:04.939103
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 08:29:44 +07)" was missed by 0:06:02.063717
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:27:04 +07)" was missed by 0:00:03.316243
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 08:39:41 +07)" was missed by 0:00:16.064367
+INFO:     ::1:63770 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:31:20 +07)" was missed by 0:00:08.601412
+Execution of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 08:31:20 +07)" skipped: maximum number of running instances reached (1)
+INFO:     ::1:61885 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:00:24 +07)" was missed by 0:00:04.689786
+INFO:     ::1:53587 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:24:24 +07)" was missed by 0:00:04.294633
+INFO:     ::1:54069 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:25:52 +07)" was missed by 0:00:02.962013
+INFO:     ::1:64898 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:57:36 +07)" was missed by 0:00:01.753031
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:57:44 +07)" was missed by 0:00:01.905878
+INFO:     ::1:65040 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:65228 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 09:58:32 +07)" was missed by 0:00:07.571956
+INFO:     ::1:65396 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49196 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49532 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:49827 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50106 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:01:20 +07)" was missed by 0:00:06.230068
+INFO:     ::1:50253 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50408 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:02:16 +07)" was missed by 0:00:05.383741
+INFO:     ::1:50623 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:50798 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:03:12 +07)" was missed by 0:00:07.071950
+INFO:     ::1:50982 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:51193 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:04:16 +07)" was missed by 0:00:06.503142
+INFO:     ::1:51343 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:51557 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:05:20 +07)" was missed by 0:00:05.118986
+INFO:     ::1:51693 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:51847 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:52145 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:06:56 +07)" was missed by 0:00:03.833651
+INFO:     ::1:52267 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:52526 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:08:00 +07)" was missed by 0:00:03.617696
+INFO:     ::1:52700 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:08:56 +07)" was missed by 0:00:06.477068
+INFO:     ::1:52949 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53043 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53218 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:09:52 +07)" was missed by 0:00:05.657801
+INFO:     ::1:53417 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53601 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:10:56 +07)" was missed by 0:00:01.978350
+INFO:     ::1:53770 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:53944 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:54096 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:54352 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:12:56 +07)" was missed by 0:00:06.373041
+INFO:     ::1:54555 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:54756 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:14:00 +07)" was missed by 0:00:03.650685
+INFO:     ::1:54926 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:55141 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:15:04 +07)" was missed by 0:00:02.123549
+INFO:     ::1:55314 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:55519 - "GET /models HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 10:16:00 +07)" was missed by 0:00:08.014259
+INFO:     ::1:55777 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61249 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61252 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61253 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61279 - "GET /models HTTP/1.1" 200 OK
+[92m10:30:56 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.APIError: APIError: OpenAIException - Connection error.. Received Model Group=gpt-4o-mini
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/http11.py", line 86, in handle_async_request
+    await self._send_request_headers(**kwargs)
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_async/http11.py", line 144, in _send_request_headers
+    with map_exceptions({h11.LocalProtocolError: LocalProtocolError}):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.LocalProtocolError: Illegal header value b'Bearer '
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/_base_client.py", line 1509, in _request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.LocalProtocolError: Illegal header value b'Bearer '
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/openai/openai.py", line 948, in async_streaming
+    headers, response = await self.make_openai_chat_completion_request(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/openai/openai.py", line 436, in make_openai_chat_completion_request
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/openai/openai.py", line 418, in make_openai_chat_completion_request
+    await openai_aclient.chat.completions.with_raw_response.create(
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/_legacy_response.py", line 381, in wrapped
+    return cast(LegacyAPIResponse[R], await func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2002, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/_base_client.py", line 1776, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/_base_client.py", line 1466, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/openai/_base_client.py", line 1543, in _request
+    raise APIConnectionError(request=request) from err
+openai.APIConnectionError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/openai/openai.py", line 1005, in async_streaming
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 455, in exception_type
+    raise APIError(
+litellm.exceptions.APIError: litellm.APIError: APIError: OpenAIException - Connection error.. Received Model Group=gpt-4o-mini
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:61280 - "POST /chat/completions HTTP/1.1" 500 Internal Server Error
+INFO:     ::1:61370 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61377 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61458 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61459 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m10:31:27 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1258, in async_completion
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 256, in post
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 212, in post
+    response.raise_for_status()
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=AIzaSyCXQUs0B0qLW6JBcwHDR-I0781EZ4rfgN4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1264, in async_completion
+    raise VertexAIError(
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 1254, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:61467 - "POST /chat/completions HTTP/1.1" 429 Too Many Requests
+INFO:     ::1:61482 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61494 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61495 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m10:31:29 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1258, in async_completion
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 256, in post
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 212, in post
+    response.raise_for_status()
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=AIzaSyCXQUs0B0qLW6JBcwHDR-I0781EZ4rfgN4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1264, in async_completion
+    raise VertexAIError(
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 1254, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:61483 - "POST /chat/completions HTTP/1.1" 429 Too Many Requests
+INFO:     ::1:61540 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:61541 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:62467 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62470 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:62613 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62614 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:62697 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62698 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m10:35:05 - LiteLLM Proxy:ERROR[0m: proxy_server.py:3963 - litellm.proxy.proxy_server.image_generation(): Exception occured - 400: {'error': '/image/generations: Invalid model name passed in model=dall-e-3. Call `/v1/models` to view available models for your key.'}
+INFO:     ::1:62708 - "POST /images/generations HTTP/1.1" 400 Bad Request
+INFO:     ::1:62709 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:62710 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:55990 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:55995 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56029 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56030 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m11:04:26 - LiteLLM Proxy:ERROR[0m: proxy_server.py:3963 - litellm.proxy.proxy_server.image_generation(): Exception occured - 400: {'error': '/image/generations: Invalid model name passed in model=gemini-flash-2.0. Call `/v1/models` to view available models for your key.'}
+INFO:     ::1:56048 - "POST /images/generations HTTP/1.1" 400 Bad Request
+INFO:     ::1:56049 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56050 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56064 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56065 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56066 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56205 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56206 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m11:04:53 - LiteLLM Proxy:ERROR[0m: proxy_server.py:3963 - litellm.proxy.proxy_server.image_generation(): Exception occured - 400: {'error': '/image/generations: Invalid model name passed in model=gemini-flash-2.0. Call `/v1/models` to view available models for your key.'}
+INFO:     ::1:56216 - "POST /images/generations HTTP/1.1" 400 Bad Request
+INFO:     ::1:56217 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56218 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56226 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56228 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56231 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56564 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56565 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56604 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56607 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56625 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56626 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56627 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56633 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56636 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56637 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56713 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56714 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56732 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56733 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56734 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56759 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56760 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56765 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56766 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56767 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56808 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56809 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56815 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56816 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56817 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56883 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56884 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56895 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56897 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56898 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56975 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56976 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:56987 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:56988 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:56989 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57174 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57175 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57228 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57229 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57257 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57258 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57259 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57260 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57265 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57266 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57267 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57268 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57278 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57288 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57293 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57339 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57340 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57351 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:57352 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57353 - "POST /chat/completions HTTP/1.1" 200 OK
+[92m11:07:58 - LiteLLM Proxy:ERROR[0m: common_request_processing.py:332 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1258, in async_completion
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/logging_utils.py", line 135, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 256, in post
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/custom_httpx/http_handler.py", line 212, in post
+    response.raise_for_status()
+  File "/Users/dale/Library/Caches/pypoetry/virtualenvs/litellm-DhXxLGLJ-py3.12/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=AIzaSyCXQUs0B0qLW6JBcwHDR-I0781EZ4rfgN4'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 477, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/llms/vertex_ai/gemini/vertex_and_google_ai_studio_gemini.py", line 1264, in async_completion
+    raise VertexAIError(
+litellm.llms.vertex_ai.common_utils.VertexAIError: {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/proxy_server.py", line 3385, in chat_completion
+    return await base_llm_response_processor.base_process_llm_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/proxy/common_request_processing.py", line 244, in base_process_llm_request
+    responses = await llm_responses
+                ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 950, in acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 926, in acompletion
+    response = await self.async_function_with_fallbacks(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3383, in async_function_with_fallbacks
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3197, in async_function_with_fallbacks
+    response = await self.async_function_with_retries(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3575, in async_function_with_retries
+    raise original_exception
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3466, in async_function_with_retries
+    response = await self.make_call(original_function, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 3584, in make_call
+    response = await response
+               ^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1089, in _acompletion
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/router.py", line 1048, in _acompletion
+    response = await _response
+               ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1452, in wrapper_async
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/utils.py", line 1313, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/main.py", line 496, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 2214, in exception_type
+    raise e
+  File "/Users/dale/Works/Moneta/src/litellm/litellm/litellm_core_utils/exception_mapping_utils.py", line 1254, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: litellm.RateLimitError: VertexAIException - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+. Received Model Group=gemini-2.0-flash-lite
+Available Model Group Fallbacks=None LiteLLM Retried: 1 times, LiteLLM Max Retries: 2
+INFO:     ::1:57368 - "POST /chat/completions HTTP/1.1" 429 Too Many Requests
+INFO:     ::1:57380 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57381 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57401 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:57418 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:57862 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57865 - "POST /chat/completions HTTP/1.1" 200 OK
+INFO:     ::1:57884 - "POST /images/generations HTTP/1.1" 200 OK
+INFO:     ::1:57885 - "GET /models HTTP/1.1" 200 OK
+INFO:     ::1:57886 - "POST /chat/completions HTTP/1.1" 200 OK
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 11:30:08 +07)" was missed by 0:00:01.408936
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 11:30:16 +07)" was missed by 0:00:09.019571
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 11:30:24 +07)" was missed by 0:00:01.816533
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 11:30:40 +07)" was missed by 0:00:02.926747
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:07:12 +07)" was missed by 0:00:01.035510
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:08:16 +07)" was missed by 0:00:02.331490
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:09:20 +07)" was missed by 0:00:01.138844
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:11:20 +07)" was missed by 0:00:02.407743
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:37:28 +07)" was missed by 0:00:07.278554
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:38:24 +07)" was missed by 0:00:07.552009
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:38:40 +07)" was missed by 0:00:01.342716
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:40:24 +07)" was missed by 0:00:07.021887
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:42:08 +07)" was missed by 0:00:04.327401
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:43:12 +07)" was missed by 0:00:03.762166
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:44:16 +07)" was missed by 0:00:01.118601
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:45:12 +07)" was missed by 0:00:06.268559
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:46:24 +07)" was missed by 0:00:02.829551
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:48:24 +07)" was missed by 0:00:07.302404
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:49:28 +07)" was missed by 0:00:03.328798
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:51:28 +07)" was missed by 0:00:02.601510
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:52:24 +07)" was missed by 0:00:04.657663
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:53:20 +07)" was missed by 0:00:06.881070
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:54:24 +07)" was missed by 0:00:01.028925
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:55:20 +07)" was missed by 0:00:06.453442
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:57:28 +07)" was missed by 0:00:01.669602
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:58:24 +07)" was missed by 0:00:05.019524
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:58:40 +07)" was missed by 0:00:01.080567
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 13:59:20 +07)" was missed by 0:00:07.109048
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:00:24 +07)" was missed by 0:00:04.356808
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:00:40 +07)" was missed by 0:00:01.098682
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:01:28 +07)" was missed by 0:00:04.847896
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:02:40 +07)" was missed by 0:00:07.399104
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:49:52 +07)" was missed by 0:00:02.437193
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:50:56 +07)" was missed by 0:00:01.576073
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 14:51:52 +07)" was missed by 0:00:07.811107
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 16:16:16 +07)" was missed by 0:00:03.195217
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 16:16:40 +07)" was missed by 0:00:08.730708
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 16:16:48 +07)" was missed by 0:00:01.747099
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 16:24:00 +07)" was missed by 0:00:06.867987
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 16:37:17 +07)" was missed by 0:00:32.702704
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 16:44:56 +07)" was missed by 0:00:03.296609
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 16:47:14 +07)" was missed by 0:07:34.403570
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:00:48 +07)" was missed by 0:00:05.346483
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 17:07:08 +07)" was missed by 0:03:34.369587
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:01:36 +07)" was missed by 0:00:04.951755
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:01:52 +07)" was missed by 0:00:05.771275
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:02:00 +07)" was missed by 0:00:06.548209
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:12:16 +07)" was missed by 0:00:02.994662
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 17:17:05 +07)" was missed by 0:05:03.097145
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 17:12:24 +07)" was missed by 0:00:01.434970
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 18:18:24 +07)" was missed by 0:00:07.262986
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 18:26:44 +07)" was missed by 0:01:36.278630
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 18:34:56 +07)" was missed by 0:00:05.480290
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 18:36:41 +07)" was missed by 0:08:09.575696
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 18:50:08 +07)" was missed by 0:00:04.603617
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 18:56:35 +07)" was missed by 0:03:27.574352
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 19:07:04 +07)" was missed by 0:00:05.575746
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 19:16:29 +07)" was missed by 0:00:29.652778
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 19:22:08 +07)" was missed by 0:00:05.277412
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 19:26:26 +07)" was missed by 0:05:36.284045
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 19:37:52 +07)" was missed by 0:00:04.505712
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 19:46:20 +07)" was missed by 0:01:25.521962
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 19:56:17 +07)" was missed by 0:08:36.759693
+Run time of job "update_spend (trigger: interval[0:00:08], next run at: 2025-08-21 20:01:52 +07)" was missed by 0:00:04.855169
+Run time of job "ResetBudgetJob.reset_budget (trigger: interval[0:09:57], next run at: 2025-08-21 20:06:14 +07)" was missed by 0:05:31.923023
+{"timestamp":"2025-08-21T13:03:27.315180Z","level":"ERROR","fields":{"message":"Error in PostgreSQL connection: Error { kind: Closed, cause: None }"},"target":"quaint::connector::postgres"}
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44613]

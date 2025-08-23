@@ -49,6 +49,8 @@ prisma = {version = "0.11.0", optional = true}
 azure-identity = {version = "^1.15.0", optional = true}
 azure-keyvault-secrets = {version = "^4.8.0", optional = true}
 google-cloud-kms = {version = "^2.21.3", optional = true}
+google-cloud-aiplatform = {version = "^1.110.0", optional = true, python = ">=3.9"}
+google-generativeai = {version = "^0.8.5", optional = true, python = ">=3.9"}
 resend = {version = "^0.8.0", optional = true}
 pynacl = {version = "^1.5.0", optional = true}
 websockets = {version = "^13.1.0", optional = true}
@@ -84,6 +86,8 @@ extra_proxy = [
     "azure-identity",
     "azure-keyvault-secrets",
     "google-cloud-kms",
+    "google-cloud-aiplatform",
+    "google-generativeai",
     "resend",
     "redisvl"
 ]
