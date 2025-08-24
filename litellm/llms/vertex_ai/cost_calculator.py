@@ -8,7 +8,7 @@ from litellm.litellm_core_utils.llm_cost_calc.utils import (
     _is_above_128k,
     generic_cost_per_token,
 )
-from litellm.types.utils import ModelInfo, Usage
+from litellm.types.utils import ImageResponse, ModelInfo, Usage
 
 """
 Gemini pricing covers: 
@@ -266,3 +266,11 @@ def cost_per_token(
         custom_llm_provider=custom_llm_provider,
         usage=usage,
     )
+
+
+def image_edit_cost(model: str, image_response: ImageResponse) -> float:
+    """Return cost for Vertex AI image editing calls."""
+    _model_info = litellm.get_model_info(model=model, custom_llm_provider="vertex_ai")
+    output_cost_per_image: float = _model_info.get("output_cost_per_image") or 0.0
+    num_images: int = len(image_response.data)
+    return output_cost_per_image * num_images

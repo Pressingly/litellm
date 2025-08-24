@@ -4836,6 +4836,144 @@ def image_generation(  # noqa: PLR0915
         )
 
 
+async def aimage_edit(*args, **kwargs) -> ImageResponse:
+    """Asynchronously call :func:`image_edit`."""
+    loop = asyncio.get_event_loop()
+    kwargs["aimg_edit"] = True
+    func = partial(image_edit, *args, **kwargs)
+    ctx = contextvars.copy_context()
+    func_with_context = partial(ctx.run, func)
+    init_response = await loop.run_in_executor(None, func_with_context)
+    if isinstance(init_response, dict):
+        return ImageResponse(**init_response)
+    if asyncio.iscoroutine(init_response):
+        return await init_response  # type: ignore
+    return init_response
+
+
+@client
+def image_edit(
+    prompt: str,
+    image: str,
+    mask: Optional[str] = None,
+    model: Optional[str] = None,
+    timeout=600,
+    api_key: Optional[str] = None,
+    api_base: Optional[str] = None,
+    api_version: Optional[str] = None,
+    custom_llm_provider=None,
+    **kwargs,
+) -> ImageResponse:
+    """OpenAI-compatible image editing endpoint."""
+    try:
+        args = locals()
+        aimg_edit = kwargs.get("aimg_edit", False)
+        litellm_call_id = kwargs.get("litellm_call_id", None)
+        logger_fn = kwargs.get("logger_fn", None)
+        mock_response: Optional[str] = kwargs.get("mock_response", None)
+        proxy_server_request = kwargs.get("proxy_server_request", None)
+        azure_ad_token_provider = kwargs.get("azure_ad_token_provider", None)
+        model_info = kwargs.get("model_info", None)
+        metadata = kwargs.get("metadata", {})
+        litellm_logging_obj: LiteLLMLoggingObj = kwargs.get("litellm_logging_obj")  # type: ignore
+        client = kwargs.get("client", None)
+        model_response: ImageResponse = ImageResponse()
+        if model is not None or custom_llm_provider is not None:
+            model, custom_llm_provider, dynamic_api_key, api_base = get_llm_provider(
+                model=model,
+                custom_llm_provider=custom_llm_provider,
+                api_base=api_base,
+            )
+        else:
+            raise ValueError("model must be provided")
+        model_response._hidden_params["model"] = model
+        openai_params = [
+            "user",
+            "request_timeout",
+            "api_base",
+            "api_version",
+            "api_key",
+            "deployment_id",
+            "organization",
+            "base_url",
+            "default_headers",
+            "timeout",
+            "max_retries",
+            "n",
+            "quality",
+            "size",
+            "style",
+        ]
+        litellm_params = all_litellm_params
+        default_params = openai_params + litellm_params + [
+            "litellm_logging_obj",
+            "client",
+            "extra_headers",
+            "headers",
+            "vertex_project",
+            "vertex_ai_project",
+            "vertex_location",
+            "vertex_ai_location",
+            "vertex_credentials",
+            "vertex_ai_credentials",
+            "aimg_edit",
+        ]
+        optional_params = {k: v for k, v in kwargs.items() if k not in default_params}
+        if custom_llm_provider == "vertex_ai":
+            vertex_ai_project = (
+                optional_params.pop("vertex_project", None)
+                or optional_params.pop("vertex_ai_project", None)
+                or litellm.vertex_project
+                or get_secret_str("VERTEXAI_PROJECT")
+            )
+            vertex_ai_location = (
+                optional_params.pop("vertex_location", None)
+                or optional_params.pop("vertex_ai_location", None)
+                or litellm.vertex_location
+                or get_secret_str("VERTEXAI_LOCATION")
+            )
+            vertex_credentials = (
+                optional_params.pop("vertex_credentials", None)
+                or optional_params.pop("vertex_ai_credentials", None)
+                or get_secret_str("VERTEXAI_CREDENTIALS")
+            )
+            api_base = (
+                api_base
+                or litellm.api_base
+                or get_secret_str("VERTEXAI_API_BASE")
+                or get_secret_str("VERTEX_API_BASE")
+            )
+            model_response = vertex_image_generation.image_edit(
+                model=model,
+                prompt=prompt,
+                image_b64=image,
+                mask_b64=mask,
+                timeout=timeout,
+                logging_obj=litellm_logging_obj,
+                optional_params=optional_params,
+                model_response=model_response,
+                vertex_project=vertex_ai_project,
+                vertex_location=vertex_ai_location,
+                vertex_credentials=vertex_credentials,
+                aimg_edit=aimg_edit,
+                api_base=api_base,
+                client=client,
+            )
+        else:
+            raise LiteLLMUnknownProvider(
+                model=model, custom_llm_provider=custom_llm_provider
+            )
+        return model_response
+    except Exception as e:
+        raise exception_type(
+            model=model,
+            custom_llm_provider=custom_llm_provider,
+            original_exception=e,
+            completion_kwargs=args,
+            extra_kwargs=kwargs,
+        )
+
+
 @client
 async def aimage_variation(*args, **kwargs) -> ImageResponse:
     """
