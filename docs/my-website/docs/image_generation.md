@@ -236,3 +236,22 @@ response = litellm.image_generation(
 )
 print(f"response: {response}")
 ```
+
+## VertexAI - Image Editing
+
+```python
+from base64 import b64encode
+import litellm
+
+with open("input.png", "rb") as f:
+    image_b64 = b64encode(f.read()).decode()
+
+response = litellm.image_edit(
+    prompt="Add a hat",
+    image=image_b64,
+    model="vertex_ai/image-edit",
+    vertex_ai_project="your-project",
+    vertex_ai_location="us-central1",
+)
+print(response)
+```

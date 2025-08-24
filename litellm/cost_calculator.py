@@ -283,6 +283,9 @@ from litellm.llms.vertex_ai.cost_calculator import (
     cost_per_token as google_cost_per_token,
 )
 from litellm.llms.vertex_ai.cost_calculator import cost_router as google_cost_router
+from litellm.llms.vertex_ai.cost_calculator import (
+    image_edit_cost as vertex_ai_image_edit_cost,
+)
 from litellm.llms.vertex_ai.image_generation.cost_calculator import (
     cost_calculator as vertex_ai_image_cost_calculator,
 )
@@ -973,14 +976,30 @@ def completion_cost(  # noqa: PLR0915
                             )
                         )
                 if (
-                    call_type == CallTypes.image_generation.value
-                    or call_type == CallTypes.aimage_generation.value
+                    call_type in (
+                        CallTypes.image_generation.value,
+                        CallTypes.aimage_generation.value,
+                        CallTypes.image_edit.value,
+                        CallTypes.aimage_edit.value,
+                    )
                     or call_type
-                    == PassthroughCallTypes.passthrough_image_generation.value
+                    in (
+                        PassthroughCallTypes.passthrough_image_generation.value,
+                        PassthroughCallTypes.passthrough_image_edit.value,
+                    )
                 ):
-                    ### IMAGE GENERATION COST CALCULATION ###
+                    ### IMAGE GENERATION/EDIT COST CALCULATION ###
                     if custom_llm_provider == "vertex_ai":
                         if isinstance(completion_response, ImageResponse):
+                            if call_type in (
+                                CallTypes.image_edit.value,
+                                CallTypes.aimage_edit.value,
+                                PassthroughCallTypes.passthrough_image_edit.value,
+                            ):
+                                return vertex_ai_image_edit_cost(
+                                    model=model,
+                                    image_response=completion_response,
+                                )
                             return vertex_ai_image_cost_calculator(
                                 model=model,
                                 image_response=completion_response,

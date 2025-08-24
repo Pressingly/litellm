@@ -201,6 +201,8 @@ class CallTypes(Enum):
     text_completion = "text_completion"
     image_generation = "image_generation"
     aimage_generation = "aimage_generation"
+    image_edit = "image_edit"
+    aimage_edit = "aimage_edit"
     moderation = "moderation"
     amoderation = "amoderation"
     atranscription = "atranscription"
@@ -285,6 +287,7 @@ CallTypesLiteral = Literal[
 
 class PassthroughCallTypes(Enum):
     passthrough_image_generation = "passthrough-image-generation"
+    passthrough_image_edit = "passthrough-image-edit"
 
 
 class TopLogprob(OpenAIObject):

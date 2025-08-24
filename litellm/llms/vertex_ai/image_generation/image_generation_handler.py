@@ -40,6 +40,21 @@ class VertexImageGeneration(VertexLLM):
         model_response.data = response_data
         return model_response
 
+    def transform_image_edit_request(
+        self,
+        image_b64: str,
+        prompt: str,
+        mask_b64: Optional[str],
+        optional_params: Optional[dict] = None,
+    ) -> Dict[str, Any]:
+        instance: Dict[str, Any] = {
+            "prompt": prompt,
+            "image": {"bytesBase64Encoded": image_b64},
+        }
+        if mask_b64:
+            instance["mask"] = {"bytesBase64Encoded": mask_b64}
+        return {"instances": [instance], "parameters": optional_params or {}}
+
     def image_generation(
         self,
         prompt: str,
@@ -241,6 +256,170 @@ class VertexImageGeneration(VertexLLM):
         if response.status_code != 200:
             raise Exception(f"Error: {response.status_code} {response.text}")
 
+        json_response = response.json()
+        return self.process_image_generation_response(
+            json_response, model_response, model
+        )
+
+    def image_edit(
+        self,
+        prompt: str,
+        image_b64: str,
+        api_base: Optional[str],
+        vertex_project: Optional[str],
+        vertex_location: Optional[str],
+        vertex_credentials: Optional[VERTEX_CREDENTIALS_TYPES],
+        model_response: ImageResponse,
+        logging_obj: Any,
+        mask_b64: Optional[str] = None,
+        model: str = "imagen-3.0-edit-001",
+        client: Optional[Any] = None,
+        optional_params: Optional[dict] = None,
+        timeout: Optional[int] = None,
+        aimg_edit: bool = False,
+        extra_headers: Optional[dict] = None,
+    ) -> ImageResponse:
+        if aimg_edit:
+            return self.aimage_edit(
+                prompt=prompt,
+                image_b64=image_b64,
+                api_base=api_base,
+                vertex_project=vertex_project,
+                vertex_location=vertex_location,
+                vertex_credentials=vertex_credentials,
+                model=model,
+                client=client,
+                optional_params=optional_params,
+                timeout=timeout,
+                logging_obj=logging_obj,
+                mask_b64=mask_b64,
+                model_response=model_response,
+            )
+
+        if client is None:
+            _params = {}
+            if timeout is not None:
+                if isinstance(timeout, float) or isinstance(timeout, int):
+                    _httpx_timeout = httpx.Timeout(timeout)
+                    _params["timeout"] = _httpx_timeout
+            else:
+                _params["timeout"] = httpx.Timeout(timeout=600.0, connect=5.0)
+            sync_handler: HTTPHandler = HTTPHandler(**_params)  # type: ignore
+        else:
+            sync_handler = client  # type: ignore
+
+        auth_header, _ = self._ensure_access_token(
+            credentials=vertex_credentials,
+            project_id=vertex_project,
+            custom_llm_provider="vertex_ai",
+        )
+        auth_header, api_base = self._get_token_and_url(
+            model=model,
+            gemini_api_key=None,
+            auth_header=auth_header,
+            vertex_project=vertex_project,
+            vertex_location=vertex_location,
+            vertex_credentials=vertex_credentials,
+            stream=False,
+            custom_llm_provider="vertex_ai",
+            api_base=api_base,
+            should_use_v1beta1_features=False,
+            mode="image_generation",
+        )
+        request_data = self.transform_image_edit_request(
+            image_b64=image_b64,
+            prompt=prompt,
+            mask_b64=mask_b64,
+            optional_params=optional_params,
+        )
+        headers = self.set_headers(auth_header=auth_header, extra_headers=extra_headers)
+        logging_obj.pre_call(
+            input=prompt,
+            api_key="",
+            additional_args={
+                "complete_input_dict": optional_params,
+                "api_base": api_base,
+                "headers": headers,
+            },
+        )
+        response = sync_handler.post(
+            url=api_base,
+            headers=headers,
+            data=json.dumps(request_data),
+        )
+        if response.status_code != 200:
+            raise Exception(f"Error: {response.status_code} {response.text}")
+        json_response = response.json()
+        return self.process_image_generation_response(
+            json_response, model_response, model
+        )
+
+    async def aimage_edit(
+        self,
+        prompt: str,
+        image_b64: str,
+        api_base: Optional[str],
+        vertex_project: Optional[str],
+        vertex_location: Optional[str],
+        vertex_credentials: Optional[VERTEX_CREDENTIALS_TYPES],
+        model_response: ImageResponse,
+        logging_obj: Any,
+        mask_b64: Optional[str] = None,
+        model: str = "imagen-3.0-edit-001",
+        client: Optional[AsyncHTTPHandler] = None,
+        optional_params: Optional[dict] = None,
+        timeout: Optional[int] = None,
+        extra_headers: Optional[dict] = None,
+    ):
+        if client is None:
+            self.async_handler = get_async_httpx_client(
+                llm_provider=litellm.LlmProviders.VERTEX_AI,
+                params={"timeout": timeout},
+            )
+        else:
+            self.async_handler = client  # type: ignore
+
+        auth_header, _ = self._ensure_access_token(
+            credentials=vertex_credentials,
+            project_id=vertex_project,
+            custom_llm_provider="vertex_ai",
+        )
+        auth_header, api_base = self._get_token_and_url(
+            model=model,
+            gemini_api_key=None,
+            auth_header=auth_header,
+            vertex_project=vertex_project,
+            vertex_location=vertex_location,
+            vertex_credentials=vertex_credentials,
+            stream=False,
+            custom_llm_provider="vertex_ai",
+            api_base=api_base,
+            should_use_v1beta1_features=False,
+            mode="image_generation",
+        )
+        request_data = self.transform_image_edit_request(
+            image_b64=image_b64,
+            prompt=prompt,
+            mask_b64=mask_b64,
+            optional_params=optional_params,
+        )
+        headers = self.set_headers(auth_header=auth_header, extra_headers=extra_headers)
+        logging_obj.pre_call(
+            input=prompt,
+            api_key="",
+            additional_args={
+                "complete_input_dict": optional_params,
+                "api_base": api_base,
+                "headers": headers,
+            },
+        )
+        response = await self.async_handler.post(
+            url=api_base,
+            headers=headers,
+            data=json.dumps(request_data),
+        )
+        if response.status_code != 200:
+            raise Exception(f"Error: {response.status_code} {response.text}")
         json_response = response.json()
         return self.process_image_generation_response(
             json_response, model_response, model
