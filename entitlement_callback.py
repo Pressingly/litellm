@@ -27,6 +27,9 @@ def get_utc_datetime():
         return datetime.utcnow()  # type: ignore
     
 class EntitlementCallback(CustomLogger):
+    # define PRE_CHARGE_AMOUNT
+    PRE_CHARGE_AMOUNT = 0.000001
+    
     def __init__(self):
         # Read any required config (e.g., publisher_id, API base URL) from environment
         self.publisher_id = os.environ.get("PUBLISHER_ID", "GPTPortalHub")
@@ -123,9 +126,10 @@ class EntitlementCallback(CustomLogger):
         user_id = request_data["metadata"]["headers"]["x-openwebui-user-id"]
         external_customer_id = user_id
         user_api_key_spend = request_data["metadata"]['user_api_key_spend']
-        response_cost = user_api_key_spend
+        # check response_cost in response
+        response_cost = 0.000001
         access_denied = False
-        error_detail = "Access denied by entitlement" # Default error message
+        error_detail = "Access denied by entitlement, visit [Plans](https://gpt-portal-publisher-storefront.sandbox.pressingly.net/us/plan) to upgrade your account" # Default error message
         try:
             await self.handle_entitlement_check(external_customer_id, response_cost)
         except HTTPException as e:
@@ -149,7 +153,7 @@ class EntitlementCallback(CustomLogger):
                  choices=[StreamingChoices(
                      finish_reason='stop', 
                      index=0, 
-                     delta=Delta(role="assistant", content=error_detail) # Use captured error detail
+                     delta=Delta(role="assistant", content="Access denied by entitlement, visit [Plans](https://gpt-portal-publisher-storefront.sandbox.pressingly.net/us/plan) to upgrade your account") # Use captured error detail
                  )]
              )
              yield error_chunk
@@ -160,7 +164,14 @@ class EntitlementCallback(CustomLogger):
         async for item in response:
             yield item
     
+    async def async_log_success_event(self, kwargs, response_obj, start_time, end_time):
+        response_cost = response_obj.get("response_cost", 0)
+        print(f"response_cost: {response_cost}")
+        # make a call to lago to log the cost! doesn't need to wait for the response
+        
         
 
 # Instantiate the callback (instance name will be used in config)
 entitlement_checker = EntitlementCallback()
+a = 1+2
+print(a)

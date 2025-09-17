@@ -1,0 +1,19 @@
+datasource client {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+model Moneta_LagoSubscription {
+  id                String   @id @default(uuid())
+  customer_id       String?
+  plan_id          String?
+  status           String   @default("active")
+  balance_threshold Json    @default("{}")
+  remaining_balance Json    @default("{}")
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+} 

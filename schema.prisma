@@ -423,3 +423,15 @@ model LiteLLM_ManagedFileTable {
   @@index([unified_file_id])
 }
 
+
+
+model Moneta_LagoSubscription {
+  id                String   @id @default(uuid())
+  customer_id       String?
+  plan_id          String?
+  status           String   @default("active")
+  balance_threshold Json    @default("{}")
+  remaining_balance Json    @default("{}")
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+} 
